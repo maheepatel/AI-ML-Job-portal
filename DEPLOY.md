@@ -121,21 +121,58 @@ Deploys from **GitHub** or from this folder with the CLI.
 
 ---
 
-## 3. Render (simple, GitHub-based)
+## 3. Render free + Neon + GitHub Actions ($0, no card for Neon/GitHub)
 
-**Why:** straightforward Docker web service with a disk. A persistent disk needs a paid instance:
-Starter at about $7/month plus about $0.25/GB for the disk. Region: Singapore is closest to India.
-Needs the code in a GitHub repo (it can be private).
+Three free pieces, each doing what its free tier is good at:
 
-1. Push the repo to GitHub (private is fine; `backend/data/profile.json` and the DB are gitignored).
-   Note: `/for-me` needs `profile.json` in the image, so either commit it to a **private** repo
-   or regenerate it on the server (`python -m gradient.cli profile <pdf>` via the Render shell).
-2. Render dashboard → **New → Web Service** → connect the repo → Runtime **Docker**.
-3. Instance type **Starter** (not Free; free instances have no disk and sleep).
-4. **Disks:** add a disk, mount path `/data`, size 3 GB.
-5. **Environment:** add the section 0 variables. Render sets `PORT`; the app follows it.
-   Health check path: `/api/health`.
-6. Create the service. You get `https://<name>.onrender.com`.
+| Piece | Free tier | Role |
+|---|---|---|
+| **Render** web service | 512 MB, 0.1 CPU, sleeps after 15 min idle (~30–60 s wake-up) | serves the site + API |
+| **Neon** Postgres | 1 GB storage, no card, permanent | the database |
+| **GitHub Actions** | free on public repos (2,000 min/month on private) | the 4-hourly scraper; also builds the match index |
+
+All three sit in the US East region (Render *Virginia*, Neon *AWS us-east-1*, GitHub's runners),
+so every database call is a short hop. Retention keeps the DB around 60 MB (closed jobs are
+slimmed after 30 days and deleted after 180, run history kept 14 days).
+
+**A. GitHub** (repo + scraper)
+1. Log the CLI in on this PC (opens a browser): `gh auth login` (GitHub.com → HTTPS → browser).
+2. Create the repo and push. **Public** keeps 4-hourly sweeps free; for **private**, change the
+   cron in `.github/workflows/scrape.yml` to every 8 hours (fits 2,000 free minutes).
+   ```bash
+   gh repo create gradient-jobs --public --source . --push
+   ```
+
+**B. Neon** (database)
+1. Sign up at https://neon.tech with GitHub (no card).
+2. Create a project: name `gradient`, region **AWS US East 1 (N. Virginia)**.
+3. **Connect** → copy the connection string (`postgresql://…neon.tech/neondb?sslmode=require`).
+   Keep it private; it contains the password.
+4. Give it to GitHub Actions (paste when prompted, so it never lands in a file or chat):
+   ```bash
+   gh secret set GRADIENT_DATABASE_URL
+   ```
+5. Optional: start with today's data instead of an empty DB (otherwise the first sweep fills it):
+   ```bash
+   cd backend && ../.venv/Scripts/python scripts/sqlite_to_postgres.py data/gradient.db "PASTE_NEON_URL"
+   ```
+
+**C. Render** (website)
+1. Sign up at https://render.com with GitHub.
+2. **New → Blueprint** → pick the `gradient-jobs` repo. Render reads `render.yaml` (free plan, Virginia, Docker).
+3. When it asks for the secret values:
+   - `GRADIENT_DATABASE_URL`: the same Neon string.
+   - `GRADIENT_PROFILE_JSON`: paste the contents of `backend/deploy-secrets/GRADIENT_PROFILE_JSON.txt`
+     (your résumé profile for `/for-me`; it lives only in Render, never in the repo).
+   - `VITE_CONTACT_EMAIL`: optional public contact email.
+4. **Apply.** The first build takes ~5–10 min, then the site is at `https://gradient-<id>.onrender.com`.
+
+**D. First sweep**
+GitHub → repo → **Actions → scrape → Run workflow**. Takes ~15–30 min, then repeats every 4 hours
+on its own. Watch the log; the last line prints the run summary. Render picks up the new index on
+the next visit (no redeploy needed).
+
+**Updating later:** `git push`. Render redeploys automatically and Actions uses the new code on the next sweep.
 
 ---
 

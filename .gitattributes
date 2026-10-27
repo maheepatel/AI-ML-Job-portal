@@ -1,0 +1,6 @@
+# Linux containers run these; never let Windows checkouts turn them into CRLF.
+*.sh text eol=lf
+Dockerfile text eol=lf
+Caddyfile text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
