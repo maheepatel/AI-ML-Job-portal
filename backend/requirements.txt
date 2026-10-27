@@ -1,0 +1,16 @@
+# Fetching (Scrapling's AsyncFetcher runs on curl_cffi; no headless browser is downloaded)
+scrapling[fetchers]==0.5
+# API
+fastapi==0.159.1
+uvicorn[standard]==0.54.0
+python-multipart==0.0.32
+# Data
+SQLAlchemy==2.1.6
+psycopg[binary]==3.2.3
+pydantic-settings==2.16.1
+PyYAML==6.0.3
+# Matching
+scikit-learn==1.9.1
+pypdf==6.21.2
+# Scheduling
+APScheduler==3.11.3

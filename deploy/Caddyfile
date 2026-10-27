@@ -1,0 +1,6 @@
+# Automatic HTTPS in front of Gradient. SITE_DOMAIN comes from deploy/.env
+# (defaults to <server-ip-with-dashes>.sslip.io, which needs no DNS setup).
+{$SITE_DOMAIN} {
+	encode gzip
+	reverse_proxy api:8270
+}

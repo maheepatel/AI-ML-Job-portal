@@ -1,0 +1,26 @@
+# The scraper for the Render + Neon setup: a full sweep every 4 hours on GitHub's runners,
+# writing to Neon. Also publishes the match index the Render web service loads.
+# Setup: repo Settings → Secrets and variables → Actions → New secret GRADIENT_DATABASE_URL.
+# Private repo? Free minutes are limited (2,000/month): change the cron to "30 */8 * * *".
+name: scrape
+on:
+  schedule: [{ cron: "30 */4 * * *" }]   # 00:30, 04:30 … UTC  (06:00, 10:00 … IST)
+  workflow_dispatch:                      # "Run workflow" button for a manual sweep
+concurrency: { group: scrape, cancel-in-progress: false }
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    defaults: { run: { working-directory: backend, shell: bash } }   # bash => pipefail, so a failed sweep fails the job
+    env:
+      GRADIENT_DATABASE_URL: ${{ secrets.GRADIENT_DATABASE_URL }}
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - name: Check the database secret is set
+        run: test -n "$GRADIENT_DATABASE_URL" || { echo "::error::Add the GRADIENT_DATABASE_URL repository secret"; exit 1; }
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip, cache-dependency-path: backend/requirements.txt }
+      - run: pip install -r requirements.txt
+      - name: Sweep
+        run: python -m gradient.cli scrape 2>&1 | grep -v "INFO: Fetched"

@@ -1,0 +1,23 @@
+# Render Blueprint: Dashboard → New → Blueprint → pick this repo. Free web service in Virginia,
+# next to Neon (AWS us-east-1) and GitHub's runners, so every query is a short hop.
+# The scraper does NOT run here (free instances sleep): GitHub Actions runs it (.github/workflows/scrape.yml).
+services:
+  - type: web
+    name: gradient
+    runtime: docker
+    plan: free
+    region: virginia
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: GRADIENT_DATABASE_URL     # Neon connection string (paste as given)
+        sync: false
+      - key: GRADIENT_PROFILE_JSON     # contents of backend/data/profile.json (powers /for-me)
+        sync: false
+      - key: VITE_CONTACT_EMAIL        # public contact email shown in the footer (optional)
+        sync: false
+      - key: GRADIENT_TRUST_PROXY_HEADERS
+        value: "true"
+      - key: GRADIENT_EMBEDDED_WORKER
+        value: "false"

@@ -1,0 +1,1 @@
+{"root":["./src/api.ts","./src/format.ts","./src/main.tsx","./src/vite-env.d.ts","./src/components/jobdetailview.tsx","./src/components/ui.tsx","./src/pages/forme.tsx","./src/pages/home.tsx","./src/pages/jobpage.tsx","./src/pages/jobs.tsx","./src/pages/legal.tsx","./src/pages/status.tsx"],"version":"5.6.3"}

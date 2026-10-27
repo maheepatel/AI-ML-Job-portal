@@ -1,0 +1,36 @@
+# AI labs & model companies
+anthropic openai cohere mistral perplexity perplexityai huggingface scaleai databricks deepmind characterai
+adept inflectionai runwayml runway stabilityai elevenlabs synthesia harvey glean gleanwork writer jasper
+togetherai together fireworksai anyscale modal replicate baseten pinecone weaviate qdrant chroma langchain
+llamaindex wandb labelbox snorkelai datarobot h2oai dataiku dominodatalab c3iot sambanova cerebrassystems
+groq lambdalabs coreweave crusoe mosaicml abridge ambiencehealthcare tempus pathai recursionpharmaceuticals
+insitro xai figureai physicalintelligence skildai skild-ai sanctuaryai covariant nuro aurorainnovation waymo
+zoox motional waabi wayve appliedintuition shieldai anduril helsing cognition anysphere replit sourcegraph
+codeium poolside augmentcode tabnine liquidai sierra decagon hebbia rogo hippocraticai cartesia suno pika
+luma lumalabs ideogram blackforestlabs reka contextualai vectara unstructured arize galileo humanloop
+langfuse braintrust fiddlerai truera robustintelligence protectai lakera hiddenlayer snorkel-ai deepgram
+assemblyai speechmatics rev otter fireflies gong observeai uniphore cresta level-ai ada intercom forethought
+moveworks aisera kore yellowai haptik gupshup sarvam sarvamai krutrim
+# Big product & infra companies
+vercel supabase retool notion figma canva miro airtable asana atlassian gitlab stripe plaid brex ramp mercury
+rippling deel gusto chime robinhood coinbase kraken affirm sofi nubank revolut monzo wise klarna airbnb
+doordash doordashusa instacart uber lyft pinterest reddit discord dropbox twilio cloudflare datadog elastic
+mongodb confluent snowflake hashicorp samsara okta zscaler crowdstrike sentinelone duolingo spotify roblox
+unity epicgames riotgames niantic grammarly quora yelp zillow wayfair etsy squarespace hubspot zendesk
+amplitude mixpanel fivetran dbtlabs airbyte astronomer hex sigmacomputing thoughtspot starburst clickhouse
+singlestore cockroachlabs planetscale neon temporal grafanalabs wiz snyk 1password tailscale linear loom
+zapier webflow framer postman browserstack hasura celonis atlan sprinklr mindtickle whatfix highradius
+chargebee freshworks moengage clevertap webengage leadsquared darwinbox icertis druva innovaccer
+# India startups & scale-ups
+razorpay phonepe cred dreamplug groww zerodha meesho swiggy zomato zepto blinkit flipkart myntra olacabs
+olaelectric rapido sharechat mohallatech dailyhunt inmobi glance unacademy upgrad physicswallah cars24 spinny
+urbancompany nykaa lenskart licious pharmeasy practo curefit policybazaar paytm mobikwik cashfree juspay
+slice jupiter fi niyo khatabook bharatpe pinelabs zoho postman spotdraft rocketlane sprinto zluri appsmith
+tooljet chatwoot frappe setu perfios signzy idfy hyperverge bureau m2p zeta navi acko godigit plum onsurity
+kreditbee moneyview rupeek simpl delhivery shiprocket porter locus ninjacart cropin qure qureai sigtuple
+tricog wadhwaniai niramai madstreetden fractal fractalanalytics tigeranalytics latentview quantiphi tredence
+sigmoid gramener affine musigma observe ai4bharat dunzo pocketfm kukufm stockgro smallcase indmoney
+jar fampay junio leap leapfinance univest scapia gokwik shopflo dukaan bigbasket tata1mg housing nobroker
+magicpin bookmyshow makemytrip cleartrip ixigo redbus oyo zoomcar yulu bounce ather eloelectric
+# Global ML-heavy employers on smartrecruiters/workable
+Visa BoschGroup ServiceNow Experian Wipro Infosys Capgemini

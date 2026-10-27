@@ -1,0 +1,30 @@
+# VPS / Oracle Free: one Gradient container (API + 4-hourly scheduler) behind Caddy (HTTPS).
+#   cd deploy && docker compose -f docker-compose.vps.yml up -d --build
+services:
+  api:
+    build:
+      context: ..
+      args:
+        VITE_CONTACT_EMAIL: ${VITE_CONTACT_EMAIL:-}
+    environment:
+      GRADIENT_DATABASE_URL: sqlite:////data/gradient.db
+      GRADIENT_EMBEDDED_WORKER: "true"
+      GRADIENT_TRUST_PROXY_HEADERS: "true"
+      GRADIENT_SOURCES_IN_FLIGHT: ${SOURCES_IN_FLIGHT:-24}
+      GRADIENT_ENABLE_LINKEDIN: ${ENABLE_LINKEDIN:-true}
+    volumes: [gradient-data:/data]
+    restart: unless-stopped
+    logging: { driver: json-file, options: { max-size: "20m", max-file: "5" } }
+  caddy:
+    image: caddy:2.8.4
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN}
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+    depends_on: [api]
+    restart: unless-stopped
+volumes:
+  gradient-data:
+  caddy-data:

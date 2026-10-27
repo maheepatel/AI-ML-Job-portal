@@ -1,0 +1,17 @@
+# Local/VPS production: API + scheduler worker sharing one SQLite volume (WAL mode).
+# For multi-host, set GRADIENT_DATABASE_URL to Postgres for both services.
+services:
+  api:
+    build: .
+    ports: ["8270:8270"]
+    env_file: [{ path: backend/.env, required: false }]
+    volumes: [gradient-data:/app/backend/data]
+    restart: unless-stopped
+  worker:
+    build: .
+    command: ["python", "-m", "gradient.cli", "worker"]
+    env_file: [{ path: backend/.env, required: false }]
+    volumes: [gradient-data:/app/backend/data]
+    restart: unless-stopped
+volumes:
+  gradient-data:

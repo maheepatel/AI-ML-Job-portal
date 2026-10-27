@@ -1,0 +1,36 @@
+# Fly.io: one machine in Mumbai runs the API + 4-hourly scheduler, with SQLite on a persistent volume.
+# `app` must be globally unique — change it if `fly launch` says the name is taken.
+app = "gradient-jobs"
+primary_region = "bom"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  GRADIENT_DATABASE_URL = "sqlite:////data/gradient.db"
+  GRADIENT_EMBEDDED_WORKER = "true"
+  GRADIENT_SOURCES_IN_FLIGHT = "24"
+  GRADIENT_TRUST_PROXY_HEADERS = "true"   # rate-limit by Fly-Client-IP, not the proxy's address
+
+[mounts]
+  source = "gradient_data"
+  destination = "/data"
+  initial_size = "3gb"
+
+[http_service]
+  internal_port = 8270
+  force_https = true
+  auto_stop_machines = "off"   # the scheduler lives in this machine, so it must stay up
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[http_service.checks]]
+    grace_period = "60s"
+    interval = "30s"
+    timeout = "5s"
+    method = "GET"
+    path = "/api/health"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "1gb"

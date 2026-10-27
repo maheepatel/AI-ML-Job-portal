@@ -1,0 +1,9 @@
+.venv
+**/node_modules
+frontend/dist
+backend/data/*.db*
+backend/data/backups
+# profile.json ships in the image so /for-me works on the server
+.git
+**/__pycache__
+.env*

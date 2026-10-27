@@ -1,0 +1,18 @@
+# secrets
+.env*
+!.env.example
+
+# runtime data (DB, backups, personal profile built from a resume)
+backend/data/*.db*
+backend/data/backups/
+backend/data/profile.json
+
+# python / node
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+frontend/dist/
+backend/seed/
+backend/deploy-secrets/

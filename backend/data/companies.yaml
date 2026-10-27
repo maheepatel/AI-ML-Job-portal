@@ -1,0 +1,304 @@
+# Company registry. Add slugs here or run scripts/discover_ats.py / scripts/expand_registry.py
+greenhouse:
+- affirm
+- airbnb
+- airtable
+- anthropic
+- asana
+- assemblyai
+- brex
+- c3iot
+- celonis
+- chime
+- cloudflare
+- cockroachlabs
+- coinbase
+- coreweave
+- cresta
+- databricks
+- datadog
+- dataiku
+- discord
+- dominodatalab
+- doordashusa
+- dropbox
+- druva
+- duolingo
+- elastic
+- epicgames
+- figma
+- figureai
+- fivetran
+- galileo
+- gitlab
+- glance
+- gleanwork
+- grafanalabs
+- groww
+- gusto
+- helsing
+- hiddenlayer
+- highradius
+- inflectionai
+- inmobi
+- instacart
+- intercom
+- labelbox
+- lyft
+- mercury
+- mixpanel
+- mongodb
+- monzo
+- motional
+- nuro
+- observeai
+- okta
+- otter
+- pathai
+- pinterest
+- planetscale
+- porter
+- ramp
+- recursionpharmaceuticals
+- reddit
+- riotgames
+- robinhood
+- roblox
+- samsara
+- scaleai
+- sigmacomputing
+- sigmoid
+- singlestore
+- slice
+- snorkelai
+- sofi
+- speechmatics
+- squarespace
+- stabilityai
+- starburst
+- stripe
+- tailscale
+- togetherai
+- twilio
+- vectara
+- vercel
+- waymo
+- wise
+- xai
+- zscaler
+ashby:
+- 1password
+- abridge
+- airbyte
+- ambiencehealthcare
+- amplitude
+- anyscale
+- astronomer
+- atlan
+- baseten
+- bounce
+- braintrust
+- bureau
+- cartesia
+- clickhouse
+- cognition
+- cohere
+- crusoe
+- decagon
+- deepgram
+- elevenlabs
+- harvey
+- hex
+- ideogram
+- insitro
+- langchain
+- leap
+- level-ai
+- linear
+- llamaindex
+- miro
+- modal
+- navi
+- neon
+- notion
+- nubank
+- openai
+- perplexity
+- physicalintelligence
+- pika
+- pinecone
+- plaid
+- poolside
+- quora
+- ramp
+- reka
+- replit
+- rev
+- rogo
+- runway
+- sarvam
+- sierra
+- snowflake
+- snyk
+- spotdraft
+- suno
+- supabase
+- synthesia
+- temporal
+- unstructured
+- wayve
+- weaviate
+- webflow
+- writer
+- zapier
+smartrecruiters:
+- BoschGroup
+- canva
+- cars24
+- dataiku
+- Experian
+- freshworks
+- glean
+- gong
+- ixigo
+- mindtickle
+- nobroker
+- ServiceNow
+- swiggy
+- together
+- uber
+- unacademy
+- wayfair
+- whatfix
+- wise
+lever:
+- anyscale
+- cred
+- fampay
+- fi
+- meesho
+- neon
+- paytm
+- pocketfm
+- porter
+- shieldai
+- waabi
+- zeta
+- zoox
+recruitee:
+- gong
+- navi
+workday:
+- tenant: adobe
+  wd: wd5
+  site: external_experienced
+  company: Adobe
+- tenant: analogdevices
+  wd: wd1
+  site: External
+  company: Analog Devices
+- tenant: autodesk
+  wd: wd1
+  site: Ext
+  company: Autodesk
+- tenant: broadcom
+  wd: wd1
+  site: External_Career
+  company: Broadcom
+- tenant: cadence
+  wd: wd1
+  site: External_Careers
+  company: Cadence
+- tenant: capitalone
+  wd: wd12
+  site: Capital_One
+  company: Capital One
+- tenant: cisco
+  wd: wd5
+  site: Cisco_Careers
+  company: Cisco
+- tenant: citi
+  wd: wd5
+  site: '2'
+  company: Citi
+- tenant: ebay
+  wd: wd5
+  site: apply
+  company: eBay
+- tenant: expedia
+  wd: wd108
+  site: search
+  company: Expedia Group
+- tenant: fis
+  wd: wd5
+  site: SearchJobs
+  company: FIS
+- tenant: gehc
+  wd: wd5
+  site: GEHC_ExternalSite
+  company: GE HealthCare
+- tenant: hp
+  wd: wd5
+  site: ExternalCareerSite
+  company: HP
+- tenant: intel
+  wd: wd1
+  site: External
+  company: Intel
+- tenant: kla
+  wd: wd1
+  site: Search
+  company: KLA
+- tenant: mastercard
+  wd: wd1
+  site: CorporateCareers
+  company: Mastercard
+- tenant: micron
+  wd: wd1
+  site: External
+  company: Micron
+- tenant: motorolasolutions
+  wd: wd5
+  site: Careers
+  company: Motorola Solutions
+- tenant: nvidia
+  wd: wd5
+  site: NVIDIAExternalCareerSite
+  company: NVIDIA
+- tenant: nxp
+  wd: wd3
+  site: careers
+  company: NXP
+- tenant: paypal
+  wd: wd1
+  site: jobs
+  company: PayPal
+- tenant: philips
+  wd: wd3
+  site: jobs-and-careers
+  company: Philips
+- tenant: pwc
+  wd: wd3
+  site: Global_Experienced_Careers
+  company: PwC
+- tenant: relx
+  wd: wd3
+  site: relx
+  company: RELX
+- tenant: salesforce
+  wd: wd12
+  site: External_Career_Site
+  company: Salesforce
+- tenant: target
+  wd: wd5
+  site: targetcareers
+  company: Target
+- tenant: thomsonreuters
+  wd: wd5
+  site: External_Career_Site
+  company: Thomson Reuters
+- tenant: workday
+  wd: wd5
+  site: Workday
+  company: Workday
+workable: []
