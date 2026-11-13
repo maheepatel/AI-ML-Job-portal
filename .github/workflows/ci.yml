@@ -1,6 +1,25 @@
 name: ci
 on: [push, pull_request]
 jobs:
+  configs:
+    # A workflow with a YAML error is silently skipped by GitHub; fail loudly here instead.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse workflow and deploy configs
+        run: |
+          python - <<'EOF'
+          import glob, sys, tomllib, yaml
+          bad = 0
+          for f in glob.glob(".github/workflows/*.yml") + ["render.yaml", "docker-compose.yml", "deploy/docker-compose.vps.yml"]:
+              try:
+                  yaml.safe_load(open(f, encoding="utf-8"))
+              except Exception as exc:
+                  bad += 1
+                  print(f"::error file={f}::{exc}")
+          tomllib.load(open("fly.toml", "rb"))
+          sys.exit(bad)
+          EOF
   backend:
     runs-on: ubuntu-latest
     defaults: { run: { working-directory: backend } }

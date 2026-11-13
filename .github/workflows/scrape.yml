@@ -17,10 +17,15 @@ jobs:
       PYTHONUNBUFFERED: "1"
     steps:
       - name: Check the database secret is set
-        run: test -n "$GRADIENT_DATABASE_URL" || { echo "::error::Add the GRADIENT_DATABASE_URL repository secret"; exit 1; }
+        run: |
+          if [ -z "$GRADIENT_DATABASE_URL" ]; then
+            echo "::error::Add the GRADIENT_DATABASE_URL repository secret (Settings > Secrets and variables > Actions)"
+            exit 1
+          fi
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12", cache: pip, cache-dependency-path: backend/requirements.txt }
       - run: pip install -r requirements.txt
       - name: Sweep
-        run: python -m gradient.cli scrape 2>&1 | grep -v "INFO: Fetched"
+        run: |
+          python -m gradient.cli scrape 2>&1 | grep -v "INFO: Fetched"
