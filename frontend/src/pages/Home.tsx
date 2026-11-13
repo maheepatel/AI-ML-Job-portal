@@ -97,10 +97,17 @@ export default function Home() {
               <div className="eyebrow">Fresh off the wire</div>
               <h2>Just posted, already verified</h2>
             </div>
-            <Link to="/jobs" className="btn btn-ink">Browse all {stats?.open?.toLocaleString() ?? ""} jobs</Link>
+            <Link to="/jobs" className="btn btn-ink">Browse all {stats?.open ? stats.open.toLocaleString() : ""} jobs</Link>
           </div>
           <div className="grid-cards">
             {fresh ? fresh.items.map((j) => <JobCard key={j.id} job={j} />) : <Skeletons n={8} />}
+            {fresh && fresh.items.length === 0 && (
+              <div className="empty" style={{ gridColumn: "1 / -1" }}>
+                {stats?.running
+                  ? "The first sweep is running — new roles appear here as each source finishes."
+                  : "No roles yet. The next sweep fills this in; sweeps run every 4 hours."}
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -145,7 +152,7 @@ export default function Home() {
               <div className="eyebrow">Trust score</div>
               <h2>Scams don't make it to your feed</h2>
               <p>
-                {stats ? `${stats.verified.toLocaleString()} roles verified on employer systems; ${stats.flagged_scams} flagged as likely scams and hidden. ` : ""}
+                {stats?.open ? `${(stats.verified ?? 0).toLocaleString()} roles verified on employer systems; ${stats.flagged_scams ?? 0} flagged as likely scams and hidden. ` : ""}
                 Every score shows its reasons, point by point.
               </p>
               <Link to="/status" className="btn btn-ink">How we score</Link>

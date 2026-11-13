@@ -242,7 +242,8 @@ def _stats():
     with db() as s:
         base = [Job.status == "open", Job.duplicate_of.is_(None), Job.trust_label != "likely_scam"]
         def n(cond):
-            return func.sum(case((cond, 1), else_=0))
+            # SUM over zero rows is NULL in SQL; an empty database must still report 0, not null.
+            return func.coalesce(func.sum(case((cond, 1), else_=0)), 0)
 
         # One pass over open canonical jobs instead of a COUNT query per tile.
         open_n, companies, new_4h, new_24h, india, remote, verified = s.execute(
