@@ -135,23 +135,17 @@ All three sit in the US East region (Render *Virginia*, Neon *AWS us-east-1*, Gi
 so every database call is a short hop. Retention keeps the DB around 60 MB (closed jobs are
 slimmed after 30 days and deleted after 180, run history kept 14 days).
 
-**A. GitHub** (repo + scraper)
-1. Log the CLI in on this PC (opens a browser): `gh auth login` (GitHub.com → HTTPS → browser).
-2. Create the repo and push. **Public** keeps 4-hourly sweeps free; for **private**, change the
-   cron in `.github/workflows/scrape.yml` to every 8 hours (fits 2,000 free minutes).
-   ```bash
-   gh repo create gradient-jobs --public --source . --push
-   ```
+**A. GitHub** (repo + scraper): done. Code lives at https://github.com/maheepatel/AI-ML-Job-portal (public, so
+4-hourly sweeps are free). For a private repo, change the cron in `.github/workflows/scrape.yml` to every 8 hours.
+Ship updates with `git push`.
 
 **B. Neon** (database)
 1. Sign up at https://neon.tech with GitHub (no card).
 2. Create a project: name `gradient`, region **AWS US East 1 (N. Virginia)**.
 3. **Connect** → copy the connection string (`postgresql://…neon.tech/neondb?sslmode=require`).
    Keep it private; it contains the password.
-4. Give it to GitHub Actions (paste when prompted, so it never lands in a file or chat):
-   ```bash
-   gh secret set GRADIENT_DATABASE_URL
-   ```
+4. Give it to GitHub Actions: repo → **Settings → Secrets and variables → Actions → New repository secret**,
+   name `GRADIENT_DATABASE_URL`, paste the string → **Add secret**.
 5. Optional: start with today's data instead of an empty DB (otherwise the first sweep fills it):
    ```bash
    cd backend && ../.venv/Scripts/python scripts/sqlite_to_postgres.py data/gradient.db "PASTE_NEON_URL"
@@ -159,7 +153,7 @@ slimmed after 30 days and deleted after 180, run history kept 14 days).
 
 **C. Render** (website)
 1. Sign up at https://render.com with GitHub.
-2. **New → Blueprint** → pick the `gradient-jobs` repo. Render reads `render.yaml` (free plan, Virginia, Docker).
+2. **New → Blueprint** → pick the `AI-ML-Job-portal` repo. Render reads `render.yaml` (free plan, Virginia, Docker).
 3. When it asks for the secret values:
    - `GRADIENT_DATABASE_URL`: the same Neon string.
    - `GRADIENT_PROFILE_JSON`: paste the contents of `backend/deploy-secrets/GRADIENT_PROFILE_JSON.txt`
