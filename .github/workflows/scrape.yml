@@ -21,16 +21,19 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check the database secret is set
         env:
-          # Only the NAMES are printed below; GitHub masks secret values in logs.
-          SECRET_NAMES_JSON: ${{ toJSON(secrets) }}
-          VARIABLE_NAMES_JSON: ${{ toJSON(vars) }}
+          # Yes/no per expected name only. Never expose the whole secrets context: GitHub holds
+          # runs that do (it looks like secret exfiltration) until someone approves them.
+          IN_VARIABLES: ${{ vars.GRADIENT_DATABASE_URL != '' && 'yes' || 'no' }}
         run: |
           if [ -n "$GRADIENT_DATABASE_URL" ]; then
             echo "Database secret found."
             exit 0
           fi
-          names() { python3 -c 'import json,os,sys; d=json.loads(os.environ[sys.argv[1]] or "{}"); print(", ".join(sorted(k for k in d if k.lower() != "github_token")) or "none")' "$1"; }
-          echo "::error::GRADIENT_DATABASE_URL is empty. Repository secrets this workflow can see: [$(names SECRET_NAMES_JSON)]. Repository variables: [$(names VARIABLE_NAMES_JSON)]. Add it under Settings > Secrets and variables > Actions > Secrets tab > Repository secrets > New repository secret."
+          if [ "$IN_VARIABLES" = "yes" ]; then
+            echo "::error::GRADIENT_DATABASE_URL was saved as a VARIABLE, not a secret. Delete it from the Variables tab and add it on the Secrets tab (Settings > Secrets and variables > Actions > Secrets > New repository secret)."
+          else
+            echo "::error::No repository secret named GRADIENT_DATABASE_URL (or DATABASE_URL / NEON_DATABASE_URL). Add it: Settings > Secrets and variables > Actions > Secrets tab > New repository secret."
+          fi
           exit 1
       - uses: actions/setup-python@v5
         with: { python-version: "3.12", cache: pip, cache-dependency-path: backend/requirements.txt }
