@@ -19,7 +19,7 @@ from sqlalchemy import and_, case, func, or_, select
 from sqlalchemy.orm import Session, defer
 
 from ..config import settings
-from ..db import SessionLocal, aware, init_db, utcnow
+from ..db import SessionLocal, aware, engine, init_db, utcnow
 from ..domain.matching import match_jobs, profile_from_pdf
 from ..domain.normalize import EU_COUNTRIES
 from ..models import Board, Job, ScrapeRun, SourceRun
@@ -177,7 +177,9 @@ def _filters(q, family, exp, region, posted_within, trust, kind, status):
 
 @app.get("/api/health")
 def health():
-    return {"ok": True}
+    # Database *type* only (never the URL): a missing GRADIENT_DATABASE_URL silently falls back to
+    # a throwaway SQLite file, which looks like "deployed but empty" unless this says so.
+    return {"ok": True, "database": engine.dialect.name, "profile": bool(settings.profile_json or settings.profile_file.exists())}
 
 
 @app.get("/api/jobs")
