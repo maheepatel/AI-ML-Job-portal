@@ -10,6 +10,10 @@ concurrency: { group: scrape, cancel-in-progress: false }
 jobs:
   sweep:
     runs-on: ubuntu-latest
+    # Render's GitHub integration created this environment; a secret added under it is an
+    # *environment* secret, which a job only sees when it names the environment. Naming it here
+    # makes the job see both repository secrets and that environment's secrets.
+    environment: main - gradient
     timeout-minutes: 120
     defaults: { run: { working-directory: backend, shell: bash } }   # bash => pipefail, so a failed sweep fails the job
     env:
@@ -32,7 +36,7 @@ jobs:
           if [ "$IN_VARIABLES" = "yes" ]; then
             echo "::error::GRADIENT_DATABASE_URL was saved as a VARIABLE, not a secret. Delete it from the Variables tab and add it on the Secrets tab (Settings > Secrets and variables > Actions > Secrets > New repository secret)."
           else
-            echo "::error::No repository secret named GRADIENT_DATABASE_URL (or DATABASE_URL / NEON_DATABASE_URL). Add it: Settings > Secrets and variables > Actions > Secrets tab > New repository secret."
+            echo "::error::GRADIENT_DATABASE_URL is empty or missing in both the repository secrets and the \"main - gradient\" environment secrets. Add it: Settings > Secrets and variables > Actions > Secrets tab > New repository secret (paste the Neon postgresql:// string, no quotes)."
           fi
           exit 1
       - uses: actions/setup-python@v5
