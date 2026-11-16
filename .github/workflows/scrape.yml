@@ -32,7 +32,7 @@ jobs:
           if [ "$IN_VARIABLES" = "yes" ]; then
             echo "::error::GRADIENT_DATABASE_URL was saved as a VARIABLE, not a secret. Delete it from the Variables tab and add it on the Secrets tab (Settings > Secrets and variables > Actions > Secrets > New repository secret)."
           else
-            echo "::error::GRADIENT_DATABASE_URL is empty or missing in both the repository secrets and the \"main - gradient\" environment secrets. Add it: Settings > Secrets and variables > Actions > Secrets tab > New repository secret (paste the Neon postgresql:// string, no quotes)."
+            echo "::error::No repository secret named GRADIENT_DATABASE_URL or AI_ML_JOB_PORTAL, or its value is empty. Add it: Settings > Secrets and variables > Actions > Secrets tab > New repository secret (paste the Neon postgresql:// string, no quotes)."
           fi
           exit 1
       - uses: actions/setup-python@v5
