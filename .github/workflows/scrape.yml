@@ -10,15 +10,11 @@ concurrency: { group: scrape, cancel-in-progress: false }
 jobs:
   sweep:
     runs-on: ubuntu-latest
-    # Render's GitHub integration created this environment; a secret added under it is an
-    # *environment* secret, which a job only sees when it names the environment. Naming it here
-    # makes the job see both repository secrets and that environment's secrets.
-    environment: main - gradient
     timeout-minutes: 120
     defaults: { run: { working-directory: backend, shell: bash } }   # bash => pipefail, so a failed sweep fails the job
     env:
       # Accept common alternative names so a slightly different secret name still works.
-      GRADIENT_DATABASE_URL: ${{ secrets.GRADIENT_DATABASE_URL || secrets.DATABASE_URL || secrets.NEON_DATABASE_URL }}
+      GRADIENT_DATABASE_URL: ${{ secrets.GRADIENT_DATABASE_URL || secrets.AI_ML_JOB_PORTAL || secrets.DATABASE_URL || secrets.NEON_DATABASE_URL }}
       PYTHONUNBUFFERED: "1"
     steps:
       # Checkout must come first: every run step works inside backend/, which only exists after it.
