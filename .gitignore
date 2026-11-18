@@ -16,3 +16,5 @@ node_modules/
 frontend/dist/
 backend/seed/
 backend/deploy-secrets/
+backend/data/master_cv.json
+.claude/

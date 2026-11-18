@@ -133,3 +133,24 @@ class SourceRun(Base):
     error: Mapped[str | None] = mapped_column(String(500), nullable=True)
     duration_ms: Mapped[int] = mapped_column(Integer, default=0)
     finished_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+
+class Application(Base):
+    """The owner's apply pipeline: one row per job queued, tailored, applied or skipped."""
+
+    __tablename__ = "applications"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    job_id: Mapped[int] = mapped_column(ForeignKey("jobs.id", ondelete="CASCADE"), unique=True, index=True)
+    lane: Mapped[str] = mapped_column(String(10), default="direct")  # direct | tailor
+    status: Mapped[str] = mapped_column(String(12), default="queued", index=True)
+    # queued | applied | skipped | interview | offer | rejected | ghosted
+    score: Mapped[int] = mapped_column(Integer, default=0)
+    reasons: Mapped[dict] = mapped_column(JSON, default=dict)  # matched/missing skills, why, breakdown
+    queued_on: Mapped[str] = mapped_column(String(10), index=True)  # IST date, YYYY-MM-DD (daily cap)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    applied_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    follow_up_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    tailored: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    notes: Mapped[str | None] = mapped_column(Text, nullable=True)

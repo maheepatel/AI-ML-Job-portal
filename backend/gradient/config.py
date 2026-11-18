@@ -41,6 +41,23 @@ class Settings(BaseSettings):
     # Optional sources
     enable_linkedin: bool = True
 
+    # Owner tools (apply queue, CV tailoring, scrape-now). Unset admin_token = owner API disabled.
+    admin_token: str | None = None
+    github_token: str | None = None  # fine-grained PAT: Actions read/write on github_repo only
+    github_repo: str = "maheepatel/AI-ML-Job-portal"
+    scrape_workflow: str = "scrape.yml"
+    master_cv_json: str | None = None  # structured master CV JSON (template: backend/data/master_cv.json, gitignored)
+    groq_api_key: str | None = None
+    groq_model: str = "llama-3.3-70b-versatile"
+    daily_apply_cap: int = 35
+    site_url: str = "https://gradient-fau6.onrender.com"
+    # Email alerts (Gmail: an app password, not the account password)
+    smtp_host: str = "smtp.gmail.com"
+    smtp_port: int = 465
+    smtp_user: str | None = None
+    smtp_password: str | None = None
+    notify_to: str | None = None
+
     trust_proxy_headers: bool = False  # true on Fly/any reverse proxy that sets client-IP headers
     cors_origins: list[str] = ["http://localhost:5270"]
 

@@ -264,3 +264,23 @@ persistent disk), Render/Railway free tiers (sleep or no disk).
   `frontend/index.html` and redeploy so link previews work.
 - Record the deployed version in `ROLLBACK.md`.
 - Follow-ups from `LAUNCH_REPORT.md`: error tracking (Sentry) and analytics within 2 weeks.
+
+## Owner tools: apply queue, tailored CVs, scrape-now, email alerts
+
+Everything lives at `/apply` and is invisible until `GRADIENT_ADMIN_TOKEN` is set.
+
+| Where | Name | Value |
+|---|---|---|
+| Render → Environment | `GRADIENT_ADMIN_TOKEN` | a long random password you make up (this is the `/apply` sign-in) |
+| Render → Environment | `GRADIENT_GITHUB_TOKEN` | fine-grained GitHub token: only this repo, permission **Actions: Read and write** |
+| Render → Environment | `GRADIENT_GROQ_API_KEY` | free key from console.groq.com (no card) |
+| Render → Environment | `GRADIENT_MASTER_CV_JSON` | contents of `backend/deploy-secrets/GRADIENT_MASTER_CV_JSON.txt` |
+| GitHub → Actions secrets | `GRADIENT_PROFILE_JSON` | contents of `backend/deploy-secrets/GRADIENT_PROFILE_JSON.txt` (builds the daily queue) |
+| GitHub → Actions secrets | `GRADIENT_SMTP_USER` | your Gmail address |
+| GitHub → Actions secrets | `GRADIENT_SMTP_PASSWORD` | a Gmail **app password** (Google Account → Security → 2-Step Verification → App passwords) |
+| GitHub → Actions secrets | `GRADIENT_NOTIFY_TO` | optional: a different address to receive alerts |
+
+After every sweep the workflow tops up today's queue (cap `GRADIENT_DAILY_APPLY_CAP`, default 35;
+India or India/APAC/worldwide-remote roles, 0-4 yrs, posted in the last 14 days, at most 2 per company)
+and emails it. Scheduled sweeps email only when the queue gained roles; manual runs always email.
+Tailored CVs only reorder and reword the master CV: rewrites that add numbers or skills are rejected.

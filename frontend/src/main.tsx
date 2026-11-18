@@ -2,6 +2,7 @@ import { Component, StrictMode, useEffect, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, Route, Routes, useLocation } from "react-router-dom";
 import { Footer, Nav } from "./components/ui";
+import Apply from "./pages/Apply";
 import ForMe from "./pages/ForMe";
 import Home from "./pages/Home";
 import JobPage from "./pages/JobPage";
@@ -67,6 +68,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/status" element={<Status />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/apply" element={<Apply />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </ErrorBoundary>

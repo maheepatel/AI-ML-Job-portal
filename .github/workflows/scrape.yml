@@ -41,3 +41,13 @@ jobs:
       - name: Sweep
         run: |
           python -m gradient.cli scrape 2>&1 | grep -v "INFO: Fetched"
+      # Fill today's apply queue and email it. Needs the owner profile + Gmail app password as
+      # secrets; without them this step logs a warning and passes, so the sweep never fails on it.
+      - name: Apply queue + email
+        if: success()
+        env:
+          GRADIENT_PROFILE_JSON: ${{ secrets.GRADIENT_PROFILE_JSON }}
+          GRADIENT_SMTP_USER: ${{ secrets.GRADIENT_SMTP_USER }}
+          GRADIENT_SMTP_PASSWORD: ${{ secrets.GRADIENT_SMTP_PASSWORD }}
+          GRADIENT_NOTIFY_TO: ${{ secrets.GRADIENT_NOTIFY_TO }}
+        run: python -m gradient.cli notify --event "${{ github.event_name }}"

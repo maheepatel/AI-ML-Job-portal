@@ -8,6 +8,8 @@
   stats                                                   quick DB summary
   rescore                                                 re-apply trust rules + dedupe to every stored job
   backup | restore <snapshot.db>                          SQLite snapshots in data/backups
+  queue                                                   top up today's apply queue (owner profile)
+  notify [--event schedule]                               queue + after-sweep email (run by the workflow)
 """
 
 import argparse
@@ -37,6 +39,9 @@ def main() -> None:
     sub.add_parser("stats")
     sub.add_parser("rescore")
     sub.add_parser("backup")
+    sub.add_parser("queue")
+    nt = sub.add_parser("notify")
+    nt.add_argument("--event", default="schedule")
     rs = sub.add_parser("restore")
     rs.add_argument("snapshot")
     args = ap.parse_args()
@@ -83,6 +88,19 @@ def main() -> None:
             fps = set(s.scalars(select(Job.fingerprint).distinct()))
             dedupe_and_score(s, fps)
         print(f"rescored {len(fps)} fingerprints")
+    elif args.cmd in ("queue", "notify"):
+        from .db import init_db, session_scope
+        from .owner.notify import after_sweep, owner_profile
+        from .owner.queue import build_queue
+
+        init_db()
+        with session_scope() as s:
+            if args.cmd == "queue":
+                profile = owner_profile()
+                added = build_queue(s, profile) if profile else []
+                print(f"queued {len(added)}" if profile else "no owner profile")
+            else:
+                print(after_sweep(s, args.event))
     elif args.cmd == "backup":
         from .backup import backup_sqlite
 

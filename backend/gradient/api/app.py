@@ -27,7 +27,7 @@ from ..search_index import ensure_index
 
 app = FastAPI(title="Gradient — AI/ML jobs API", version="1.0", docs_url="/api/docs", openapi_url="/api/openapi.json")
 app.add_middleware(GZipMiddleware, minimum_size=1000)
-app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins, allow_methods=["GET", "POST"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins, allow_methods=["GET", "POST", "PATCH"], allow_headers=["*"])
 
 FAMILIES = ["ML Engineer", "Data Scientist", "AI Engineer / LLM", "Research", "Computer Vision", "NLP & Speech",
             "MLOps & ML Platform", "AI Product Engineering", "Data & Analytics"]
@@ -375,12 +375,16 @@ async def _request_context(request: Request, call_next):
     return response
 
 
+from .owner import router as owner_router  # noqa: E402  (after the public routes, before the SPA catch-all)
+
+app.include_router(owner_router)
+
 # ---------------------------------------------------------------- SPA
 
 if settings.frontend_dist.exists():
     app.mount("/assets", StaticFiles(directory=settings.frontend_dist / "assets"), name="assets")
 
-    SPA_ROUTES = re.compile(r"^(|jobs|jobs/\d+|closed|for-me|status|privacy|terms)/?$")
+    SPA_ROUTES = re.compile(r"^(|jobs|jobs/\d+|closed|for-me|status|privacy|terms|apply)/?$")
 
     @app.get("/{path:path}", include_in_schema=False)
     def spa(path: str):

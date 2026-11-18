@@ -14,3 +14,5 @@ scikit-learn==1.9.1
 pypdf==6.21.2
 # Scheduling
 APScheduler==3.11.3
+# Owner CV PDFs
+fpdf2==2.8.3
