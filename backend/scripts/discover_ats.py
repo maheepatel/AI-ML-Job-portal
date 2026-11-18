@@ -25,22 +25,32 @@ PROBES = {
     "workable": ("https://apply.workable.com/api/v1/widget/accounts/{s}", lambda j: len(j.get("jobs", []))),
     "recruitee": ("https://{s}.recruitee.com/api/offers/", lambda j: len(j.get("offers", []))),
     "smartrecruiters": ("https://api.smartrecruiters.com/v1/companies/{s}/postings?limit=1", lambda j: j.get("totalFound", 0)),
+    "personio": ("https://{s}.jobs.personio.de/xml", lambda t: t.count("<position>")),
+    "teamtailor": ("https://{s}.teamtailor.com/jobs.rss", lambda t: t.count("<item>")),
+    "bamboohr": ("https://{s}.bamboohr.com/careers/list", lambda j: len(j.get("result") or [])),
+    "breezy": ("https://{s}.breezy.hr/json", lambda j: len(j) if isinstance(j, list) else 0),
+    "rippling": ("https://api.rippling.com/platform/api/ats/v1/board/{s}/jobs", lambda j: len(j) if isinstance(j, list) else 0),
 }
+TEXT_FEEDS = {"personio", "teamtailor"}
 
 
-async def probe(http: Http, slug: str) -> list[dict]:
+async def probe(http: Http, slug: str, only: set[str] | None = None) -> list[dict]:
     async def one(ats: str):
         url, count = PROBES[ats]
         try:
             resp = await http.get(url.format(s=slug), attempts=1, timeout=15)
             if resp.status != 200:
                 return None
-            n = count(resp.json())
+            if ats in TEXT_FEEDS:
+                body = resp.body.decode("utf-8", "replace") if isinstance(resp.body, bytes) else str(resp.body)
+                n = count(body) if body.lstrip().startswith("<?xml") or "<rss" in body[:200] else 0
+            else:
+                n = count(resp.json())
             return {"ats": ats, "slug": slug, "jobs": n} if n else None
         except Exception:
             return None
 
-    found = await asyncio.gather(*(one(a) for a in PROBES))
+    found = await asyncio.gather(*(one(a) for a in PROBES if not only or a in only))
     return [f for f in found if f]
 
 

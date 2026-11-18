@@ -1,0 +1,1062 @@
+# YC startups on a supported ATS (origin "yc"), found by probing the yc-oss directory
+# (scripts/expand_registry.py). Every run also adds boards (origin yc) found on a rotating
+# slice of YC company websites.
+ashby:
+- slug: abacum
+  company: Abacum
+- slug: accord
+  company: Accord
+- slug: adaptyv
+  company: Adaptyv
+- slug: afterquery
+  company: AfterQuery
+- slug: agave
+  company: Agave
+- slug: agent
+  company: Nexus
+- slug: agentmail
+  company: AgentMail
+- slug: aios
+  company: AIOS
+- slug: airgoods
+  company: Airgoods
+- slug: aleph
+  company: Aleph
+- slug: andromedasurgical
+  company: Andromeda Surgical
+- slug: answerthis
+  company: AnswerThis
+- slug: anthrogen
+  company: Anthrogen
+- slug: apolink
+  company: Apolink
+- slug: aqua-voice
+  company: Aqua Voice
+- slug: aragorn
+  company: Aragorn AI
+- slug: archil
+  company: Archil
+- slug: arini
+  company: Arini
+- slug: arketa
+  company: Arketa
+- slug: arq
+  company: ARQ
+- slug: artie
+  company: Artie
+- slug: artisan
+  company: Artisan
+- slug: artosai
+  company: Artos
+- slug: ashby
+  company: Ashby
+- slug: asimov
+  company: Asimov
+- slug: assembly
+  company: Assembly
+- slug: astro-mechanica
+  company: Astro Mechanica
+- slug: atlas
+  company: Atlas
+- slug: atob
+  company: AtoB
+- slug: atomic
+  company: Atomic
+- slug: authzed
+  company: authzed
+- slug: autumn
+  company: Autumn
+- slug: avallon
+  company: Avallon AI
+- slug: avoca
+  company: Avoca
+- slug: axle-health
+  company: Axle Health
+- slug: belvo
+  company: Belvo
+- slug: benepass
+  company: Benepass
+- slug: beparallel
+  company: Parallel
+- slug: beyondreachlabs
+  company: Beyond Reach Labs
+- slug: billiontoone
+  company: BillionToOne
+- slug: blacksmith
+  company: Blacksmith
+- slug: bland
+  company: Bland AI
+- slug: blee
+  company: Blee
+- slug: bolna
+  company: Bolna AI
+- slug: bootloop
+  company: BootLoop
+- slug: brainbaselabs
+  company: Brainbase Labs
+- slug: brettonai
+  company: Bretton AI
+- slug: broccoli
+  company: Broccoli AI
+- slug: brumby
+  company: Brumby
+- slug: bunkerhillhealth
+  company: Bunkerhill Health
+- slug: camber
+  company: Camber
+- slug: cambio
+  company: Cambio
+- slug: cambly
+  company: Cambly
+- slug: campfire
+  company: Campfire
+- slug: candidhealth
+  company: Candid Health
+- slug: capsule
+  company: CAPSULE
+- slug: capy
+  company: Capy
+- slug: cardboard
+  company: Cardboard
+- slug: caremessage
+  company: CareMessage
+- slug: caribou
+  company: Caribou
+- slug: casca
+  company: Casca
+- slug: casco
+  company: Casco
+- slug: castle
+  company: Castle
+- slug: centralize
+  company: Centralize
+- slug: charge-robotics
+  company: Charge Robotics
+- slug: chestnut
+  company: Chestnut
+- slug: cinder
+  company: Cinder
+- slug: circuithub
+  company: CircuitHub
+- slug: claim-health
+  company: Claim Health
+- slug: claimsorted
+  company: ClaimSorted
+- slug: clarion
+  company: Clarion
+- slug: classdojo
+  company: ClassDojo
+- slug: clearly-ai
+  company: Clearly AI
+- slug: clipboard
+  company: Clipboard
+- slug: clueso
+  company: Clueso
+- slug: codes-health
+  company: Codes Health
+- slug: comena
+  company: Comena
+- slug: complete
+  company: Complete
+- slug: complir
+  company: Complir
+- slug: concourse
+  company: Concourse
+- slug: conductor
+  company: Conductor
+- slug: conduit
+  company: Conduit
+- slug: confido
+  company: Confido
+- slug: context
+  company: Context.dev
+- slug: conveo
+  company: Conveo
+- slug: coperniq
+  company: Coperniq
+- slug: cosine
+  company: Cosine
+- slug: credal
+  company: Credal.ai
+- slug: curri
+  company: Curri
+- slug: darwin
+  company: Darwin
+- slug: datafold
+  company: Datafold
+- slug: dataleap
+  company: Dataleap
+- slug: david-ai
+  company: David AI
+- slug: decodahealth
+  company: Decoda Health
+- slug: deepnote
+  company: Deepnote
+- slug: diligencesquared
+  company: DiligenceSquared
+- slug: dispatch
+  company: Dispatch
+- slug: ditto
+  company: Ditto
+- slug: dodo
+  company: Dodo
+- slug: domu
+  company: Domu Technology Inc.
+- slug: double
+  company: Double – Coding Copilot
+- slug: duffel
+  company: Duffel
+- slug: dyneti
+  company: Dyneti Technologies
+- slug: edwin
+  company: Edwin
+- slug: ekho
+  company: Ekho
+- slug: electricair
+  company: Electric Air
+- slug: ello
+  company: Ello
+- slug: eloquentai
+  company: Eloquent AI
+- slug: elyos
+  company: Elyos AI
+- slug: empirical
+  company: Empirical Health
+- slug: encord
+  company: Encord
+- slug: enode
+  company: Enode
+- slug: escape
+  company: Escape
+- slug: event-horizon-labs
+  company: Event Horizon Labs
+- slug: eventual
+  company: Eventual
+- slug: fernstone
+  company: Fernstone
+- slug: fieldguide
+  company: Fieldguide
+- slug: finch
+  company: Finch
+- slug: finni-health
+  company: Finni Health
+- slug: finny
+  company: FINNY AI
+- slug: firecrawl
+  company: Firecrawl
+- slug: firstwork
+  company: FirstWork
+- slug: flai
+  company: Flai
+- slug: fleek
+  company: Fleek
+- slug: fleetline
+  company: Fleetline
+- slug: fleetworks
+  company: FleetWorks
+- slug: flowtel
+  company: Flowtel
+- slug: flutterflow
+  company: FlutterFlow
+- slug: focal
+  company: Focal
+- slug: formance
+  company: Formance
+- slug: fortuna-health
+  company: Fortuna Health
+- slug: freshpaint
+  company: Freshpaint
+- slug: furtherai
+  company: FurtherAI
+- slug: generalastro
+  company: General Astronautics
+- slug: gigs
+  company: Gigs
+- slug: glide
+  company: Glide
+- slug: golinks
+  company: GoLinks
+- slug: govdash
+  company: GovDash
+- slug: goveagle
+  company: GovEagle
+- slug: greatquestion
+  company: Great Question
+- slug: greenboard
+  company: Greenboard
+- slug: greptile
+  company: Greptile
+- slug: gumloop
+  company: Gumloop
+- slug: halluminate
+  company: Halluminate
+- slug: happl
+  company: Happl
+- slug: headstart
+  company: Headstart
+- slug: healthtech-1
+  company: Healthtech 1
+- slug: hedge
+  company: Hedge
+- slug: herondata
+  company: Heron
+- slug: hockeystack
+  company: HockeyStack
+- slug: homebase
+  company: Homebase
+- slug: hotplate
+  company: Hotplate
+- slug: hud
+  company: HUD
+- slug: humaans
+  company: Humaans
+- slug: humanarchive
+  company: Human Archive
+- slug: hyperbound
+  company: Hyperbound
+- slug: hypercubic
+  company: Hypercubic
+- slug: hyperspell
+  company: Hyperspell
+- slug: infinite
+  company: Infinite
+- slug: infisical
+  company: Infisical
+- slug: influxdata
+  company: InfluxData
+- slug: inkeep
+  company: Inkeep
+- slug: innate
+  company: Innate
+- slug: interfere
+  company: Interfere
+- slug: invert
+  company: Invert
+- slug: invopop
+  company: Invopop
+- slug: jeevyfabrication
+  company: Jeevy Fabrication
+- slug: jiga
+  company: Jiga
+- slug: juicebox
+  company: Juicebox
+- slug: junction
+  company: Junction
+- slug: kalshi
+  company: Kalshi
+- slug: kernel
+  company: KERNEL
+- slug: kingdom
+  company: Kingdom
+- slug: kivo-health
+  company: Kivo Health
+- slug: klarify
+  company: Klarify
+- slug: knowtex
+  company: Knowtex
+- slug: kodex
+  company: Kodex
+- slug: kombo
+  company: Kombo
+- slug: lago
+  company: Lago
+- slug: lance
+  company: Lance
+- slug: lancedb
+  company: LanceDB
+- slug: langdock
+  company: Langdock
+- slug: lapel
+  company: Lapel
+- slug: lark
+  company: Lark
+- slug: latent
+  company: Latent
+- slug: legionhealth
+  company: Legion Health
+- slug: legora
+  company: Legora
+- slug: lightdash
+  company: Lightdash
+- slug: lingodotdev
+  company: Lingo.dev
+- slug: litellm
+  company: LiteLLM
+- slug: lucis
+  company: Lucis
+- slug: luminai
+  company: Luminai
+- slug: magicpatterns
+  company: Magic Patterns
+- slug: mangodesk
+  company: MangoDesk
+- slug: mastra
+  company: Mastra
+- slug: mednet
+  company: Mednet
+- slug: mem0
+  company: Mem0
+- slug: mercator
+  company: Mercator
+- slug: mercura
+  company: Mercura
+- slug: metal
+  company: Metal
+- slug: method
+  company: Method
+- slug: metriport
+  company: Metriport
+- slug: middesk
+  company: Middesk
+- slug: mintlify
+  company: Mintlify
+- slug: misolabs
+  company: Miso Labs
+- slug: moderntreasury
+  company: Modern Treasury
+- slug: modus
+  company: Modus
+- slug: momentic
+  company: Momentic
+- slug: morpho
+  company: MorphoAI
+- slug: mosaic
+  company: Mosaic
+- slug: moss
+  company: Moss
+- slug: mundo-ai
+  company: Mundo AI
+- slug: mutiny
+  company: Mutiny
+- slug: nango
+  company: Nango
+- slug: nash
+  company: Nash
+- slug: new-story
+  company: New Story
+- slug: nomic
+  company: Nomic Bio
+- slug: notabene
+  company: Notabene
+- slug: novig
+  company: Novig
+- slug: nowadays
+  company: Nowadays
+- slug: numeral
+  company: Numeral
+- slug: offdeal
+  company: OffDeal
+- slug: offstream
+  company: Offstream
+- slug: ollama
+  company: Ollama
+- slug: omni
+  company: Omni
+- slug: onechronos
+  company: OneChronos
+- slug: oneleet
+  company: Oneleet
+- slug: onerobot
+  company: One Robot
+- slug: oneschema
+  company: OneSchema
+- slug: opencall
+  company: Opencall
+- slug: outrival
+  company: OutRival, Inc.
+- slug: outset
+  company: Outset
+- slug: overview
+  company: Overview
+- slug: padlet
+  company: Padlet
+- slug: paradigm
+  company: Paradigm
+- slug: paradigmai
+  company: Paradigm
+- slug: parallel
+  company: Parallel Bio
+- slug: parallel-bio
+  company: Parallel Bio
+- slug: parameter
+  company: Parameter
+- slug: pax-historia
+  company: Pax Historia
+- slug: permitflow
+  company: PermitFlow
+- slug: phoenix
+  company: Phoenix
+- slug: photoroom
+  company: Photoroom
+- slug: pirros
+  company: Pirros
+- slug: pivotrobotics
+  company: Pivot Robotics
+- slug: playground
+  company: Playground
+- slug: pointone
+  company: PointOne
+- slug: polymath
+  company: Polymath
+- slug: popl
+  company: Popl
+- slug: posh
+  company: Posh
+- slug: posthog
+  company: PostHog
+- slug: probablygenetic
+  company: Probably Genetic
+- slug: promise
+  company: Promise
+- slug: proofofhuman
+  company: Proof of Human
+- slug: provision
+  company: Provision
+- slug: pure
+  company: Pure
+- slug: quicknode
+  company: Quicknode
+- slug: quindar
+  company: Quindar
+- slug: radar
+  company: RADAR
+- slug: raindrop
+  company: Raindrop
+- slug: rallyuxr
+  company: Rally
+- slug: reach
+  company: Reach
+- slug: reacher
+  company: Reacher
+- slug: ready
+  company: Ready
+- slug: realitydefender
+  company: Reality Defender
+- slug: recall
+  company: Recall.ai
+- slug: reducto
+  company: Reducto
+- slug: reform
+  company: Reform
+- slug: relace
+  company: Relace
+- slug: relling
+  company: Relling
+- slug: replo
+  company: Replo
+- slug: rescale
+  company: Rescale
+- slug: resonance
+  company: Resonance
+- slug: revenuecat
+  company: RevenueCat
+- slug: rivet
+  company: Rivet
+- slug: rivia
+  company: Rivia.AI
+- slug: roboflow
+  company: Roboflow
+- slug: rollstack
+  company: Rollstack
+- slug: runa
+  company: Runa
+- slug: ryvn
+  company: Ryvn
+- slug: safetykit
+  company: SafetyKit
+- slug: salespatriot
+  company: SalesPatriot
+- slug: salient
+  company: Salient
+- slug: scape
+  company: Scape
+- slug: scribe
+  company: Scribe
+- slug: serifhealth
+  company: Serif Health
+- slug: sf-tensor
+  company: SF Tensor
+- slug: shadeform
+  company: Shadeform
+- slug: shepherd
+  company: Shepherd
+- slug: shortstory
+  company: Short Story
+- slug: sieve
+  company: Sieve
+- slug: sift
+  company: Sift
+- slug: signoz
+  company: SigNoz
+- slug: simple-ai
+  company: Simple AI
+- slug: simplify
+  company: Simplify
+- slug: skylink
+  company: SkyLink
+- slug: slope
+  company: Slope
+- slug: snapmagic
+  company: SnapMagic
+- slug: sola
+  company: Sola
+- slug: solidroad
+  company: Solidroad
+- slug: solveintelligence
+  company: Solve Intelligence
+- slug: sorcerer
+  company: Sorcerer
+- slug: spade
+  company: Spade
+- slug: speak
+  company: Speak
+- slug: spellbrush
+  company: Spellbrush
+- slug: sphere
+  company: Sphere
+- slug: spotlight
+  company: Spotlight Realty
+- slug: spur
+  company: Spur
+- slug: stable
+  company: Stable
+- slug: stepful
+  company: Stepful
+- slug: stilta
+  company: Stilta
+- slug: stream
+  company: Stream
+- slug: subsets
+  company: Subsets
+- slug: substrate
+  company: Substrate
+- slug: svix
+  company: Svix
+- slug: sweep
+  company: Sweep
+- slug: sygaldry-technologies
+  company: Sygaldry Technologies
+- slug: syntheticfi
+  company: SyntheticFi
+- slug: tailor
+  company: Tailor
+- slug: taktile
+  company: Taktile
+- slug: tamarindbio
+  company: Tamarind Bio
+- slug: tank-payments
+  company: Tank Payments
+- slug: tavus
+  company: Tavus
+- slug: tekton-dynamics
+  company: Tekton Dynamics
+- slug: telli
+  company: telli
+- slug: tempo
+  company: Tempo
+- slug: tennr
+  company: Tennr
+- slug: tenor
+  company: Tenor
+- slug: terminal
+  company: Terminal
+- slug: thera
+  company: Thera
+- slug: thundercompute
+  company: Thunder Compute
+- slug: tilt
+  company: Tilt (f.k.a. Delphia)
+- slug: titan
+  company: Titan
+- slug: topline-pro
+  company: Topline Pro
+- slug: triomics
+  company: Triomics
+- slug: tsenta
+  company: Tsenta
+- slug: tuesday-labs
+  company: Tuesday Labs
+- slug: turion-space
+  company: Turion Space
+- slug: twenty
+  company: Twenty
+- slug: ultra
+  company: Ultra
+- slug: unify
+  company: Unify
+- slug: upcodes
+  company: UpCodes
+- slug: uplane
+  company: Uplane
+- slug: usul
+  company: Usul
+- slug: vanta
+  company: Vanta
+- slug: vapi
+  company: Vapi
+- slug: vector
+  company: Vector
+- slug: verahealth
+  company: Vera Health
+- slug: veritus
+  company: Veritus
+- slug: verto
+  company: Verto
+- slug: vetcove
+  company: Vetcove
+- slug: vitalize
+  company: Vitalize
+- slug: voize
+  company: voize
+- slug: vooma
+  company: Vooma
+- slug: vori
+  company: Vori
+- slug: vorticity
+  company: Vorticity
+- slug: wafer
+  company: Wafer
+- slug: weave
+  company: Weave
+- slug: wonderly
+  company: Wonderly
+- slug: ycombinator
+  company: Y Combinator
+- slug: zeit-ai
+  company: Zeit AI
+- slug: zensors
+  company: Zensors
+- slug: ziina
+  company: Ziina
+- slug: zip
+  company: Zip
+greenhouse:
+- slug: akidolabs
+  company: Akido
+- slug: albedo
+  company: Albedo
+- slug: algolia
+  company: Algolia
+- slug: alpaca
+  company: 'Alpaca '
+- slug: aon3d
+  company: AON3D Careers
+- slug: apolloio
+  company: Apollo.io
+- slug: attain
+  company: Attain
+- slug: axial
+  company: Axial
+- slug: axiom
+  company: Axiom
+- slug: axle
+  company: Axle
+- slug: baubap
+  company: Baubap
+- slug: beam
+  company: Bridge to Enter Advanced Mathematics (BEAM)
+- slug: billiontoone
+  company: BillionToOne
+- slug: bitmovin
+  company: Bitmovin
+- slug: burnt
+  company: XION
+- slug: caribou
+  company: Caribou Financial
+- slug: checkr
+  company: Checkr
+- slug: coast
+  company: Coast
+- slug: diligent
+  company: 'Diligent Services '
+- slug: echo
+  company: Echo Neurotechnologies
+- slug: elite
+  company: 'Elite Physical Therapy, Inc. '
+- slug: flex
+  company: Flex
+- slug: flexport
+  company: Flexport
+- slug: generalproximity
+  company: General Proximity
+- slug: gigs
+  company: Gigs
+- slug: ginkgobioworks
+  company: Ginkgo Bioworks Inc.
+- slug: givecampus
+  company: GiveCampus
+- slug: glide
+  company: Glide
+- slug: goatgroup
+  company: GOAT Group
+- slug: golf
+  company: GOLF.com // GOLF Magazine
+- slug: hackerrank
+  company: HackerRank Careers
+- slug: haven
+  company: Haven Interactive Studios
+- slug: hive
+  company: Hive
+- slug: humaninterest
+  company: Human Interest
+- slug: icarus
+  company: Icarus
+- slug: imt
+  company: IMT Care
+- slug: instawork
+  company: Instawork
+- slug: kalshi
+  company: Kalshi
+- slug: kernalbio
+  company: Kernal Biologics
+- slug: lattice
+  company: Lattice
+- slug: legalist
+  company: Legalist
+- slug: limrun
+  company: Limrun
+- slug: lob
+  company: Lob
+- slug: marqvision
+  company: MarqVision
+- slug: maymobility
+  company: May Mobility
+- slug: medium
+  company: Medium Biosciences
+- slug: meruhealth
+  company: Meru Health
+- slug: method
+  company: Method, a GlobalLogic company
+- slug: modernhealth
+  company: Modern Health
+- slug: momentic
+  company: Momentic Studios
+- slug: morph
+  company: Morph
+- slug: nabis
+  company: NABIS
+- slug: newton
+  company: Newton
+- slug: niraenergy
+  company: Nira Energy
+- slug: novacredit
+  company: Nova Credit
+- slug: odeko
+  company: Odeko
+- slug: openwork
+  company: Openwork
+- slug: ophelia
+  company: Ophelia
+- slug: orbitaloperations
+  company: Orbital Operations
+- slug: orchestra
+  company: Orchestra
+- slug: osmosis
+  company: Osmosis
+- slug: overwatch
+  company: Overwatch
+- slug: pairteam
+  company: Pair Team
+- slug: parallel
+  company: Parallel Bio
+- slug: pelago
+  company: Pelago
+- slug: picnicai
+  company: PicnicAI
+- slug: postscript
+  company: Postscript
+- slug: powerx
+  company: POWERX
+- slug: praxis
+  company: Praxis
+- slug: prodigal
+  company: Prodigal
+- slug: prolific
+  company: 'Prolific '
+- slug: prospa
+  company: Prospa
+- slug: qventus
+  company: Qventus
+- slug: radar
+  company: RADAR
+- slug: raven
+  company: Raven
+- slug: recall
+  company: Recall.ai
+- slug: recidiviz
+  company: Recidiviz
+- slug: reflex
+  company: Reflex
+- slug: rosebud
+  company: Rosebud AI
+- slug: sendbird
+  company: Sendbird
+- slug: sensei
+  company: Sensei Wellness Holdings Inc.,
+- slug: spaceium
+  company: Spaceium Inc
+- slug: spotlight
+  company: Spotlight Realty
+- slug: superset
+  company: 'super{set} Hive Community '
+- slug: swayable
+  company: Swayable
+- slug: tempo
+  company: Tempo
+- slug: tetra
+  company: Tetra
+- slug: understoodcare
+  company: Understood Care
+- slug: veriff
+  company: Veriff
+- slug: weave
+  company: Weave
+- slug: xendit
+  company: Xendit
+- slug: yuma
+  company: Yuma AI
+lever:
+- slug: biorender
+  company: BioRender
+- slug: bloom
+  company: Bloom
+- slug: bolster
+  company: Bolster
+- slug: doola
+  company: doola
+- slug: epsilon3
+  company: Epsilon3
+- slug: finch
+  company: Finch
+- slug: finn
+  company: Finn
+- slug: glide
+  company: Glide
+- slug: gridware
+  company: Gridware
+- slug: handoff
+  company: Handoff
+- slug: layup
+  company: Layup
+- slug: livingcarbon
+  company: Living Carbon
+- slug: marqvision
+  company: MarqVision
+- slug: mashgin
+  company: Mashgin
+- slug: mytos
+  company: Mytos
+- slug: netomi
+  company: Netomi
+- slug: newton
+  company: Newton
+- slug: nimbus
+  company: Nimbus
+- slug: people-ai
+  company: People.ai
+- slug: postera
+  company: PostEra
+- slug: prosper
+  company: Prosper
+- slug: reachpower
+  company: Reach
+- slug: sapling
+  company: Sapling.ai
+- slug: skyways
+  company: Skyways
+- slug: smartcuts
+  company: Smartcuts
+- slug: snappr
+  company: Snappr
+- slug: superside
+  company: Superside
+- slug: text
+  company: Text.ai
+- slug: thunkable
+  company: Thunkable
+- slug: tovala
+  company: Tovala
+- slug: tryriot
+  company: Riot
+- slug: twodots
+  company: Two Dots
+- slug: unify
+  company: Unify
+- slug: unusual
+  company: Unusual
+- slug: vergesense
+  company: VergeSense
+- slug: voltalabs
+  company: Volta Labs, Inc.
+- slug: zippi
+  company: Zippi
+recruitee:
+- slug: adam
+  company: Adam
+- slug: alex
+  company: Alex
+- slug: arq
+  company: Recruitment
+- slug: assembly
+  company: Assembly
+- slug: bloom
+  company: BLOOM
+- slug: coba
+  company: Coba
+- slug: context
+  company: Context.dev
+- slug: ember
+  company: Ember
+- slug: medmehealth
+  company: MedMe Health
+- slug: million
+  company: Million
+- slug: nimble
+  company: Nimble
+- slug: parallel
+  company: Parallel
+- slug: serra
+  company: Serra
+- slug: weekday
+  company: Weekday
+- slug: yuma
+  company: Yuma AI
+smartrecruiters:
+- slug: agency
+  company: Agency
+- slug: alemhealth
+  company: AlemHealth
+- slug: bloom
+  company: Bloom
+- slug: finku
+  company: Finku
+- slug: hackerrank
+  company: HackerRank
+- slug: homeroom
+  company: HomeRoom
+- slug: juicebox
+  company: Juicebox
+- slug: kodo
+  company: Kodo
+- slug: kombo
+  company: Kombo
+- slug: mosaic
+  company: Mosaic
+- slug: movley
+  company: Movley
+- slug: onechronos
+  company: OneChronos
+- slug: orbio
+  company: Orbio Earth
+- slug: picnic
+  company: PicnicAI
+- slug: superset
+  company: Superset
+- slug: touchmark
+  company: Touchmark
+- slug: vincigames
+  company: Vinci Games
+- slug: vouch
+  company: Vouch
+- slug: yassir
+  company: Yassir

@@ -1,0 +1,46 @@
+# Big tech, AI labs and well-funded AI/ML employers by region, as ATS slug guesses.
+# python scripts/discover_ats.py --file scripts/candidates_world.txt  (prints which ATS answers)
+
+# US: AI labs and AI-first companies
+openai xai perplexity perplexityai scaleai scale togetherai together fireworksai anyscale modal modallabs runwayml runway
+characterai character pika huggingface cohere mistral adept imbue sierra decagon harvey glean hebbia writer jasper
+replit cursor anysphere cognition magic poolside reka ai21 ai21labs inflection essentialai physicalintelligence skildai
+fieldai covariant bostondynamics agility apptronik 1x figure sanctuary tesla waymo aurora zoox nuro wayve kodiak
+plus applied appliedintuition scaleai snorkelai snorkel weightsandbiases wandb pinecone weaviate qdrant chroma
+langchain llamaindex baseten replicate octoml lamini predibase arize fiddler truera robustintelligence hiddenlayer
+cerebras sambanova groq etched tenstorrent lightmatter graphcore d-matrix mythic rain
+nvidia amd intel qualcomm broadcom marvell arm palantir snowflake databricks confluent mongodb elastic datadog
+stripe plaid ramp brex chime robinhood coinbase affirm block square sofi
+airbnb uber lyft doordash instacart pinterest reddit snap discord roblox duolingo spotify netflix dropbox
+notion figma canva asana atlassian airtable zapier hubspot zendesk twilio okta cloudflare fastly
+# Europe
+deepmind helsing aleph-alpha alephalpha blackforestlabs synthesia elevenlabs photoroom huggingface poolside
+mistralai kyutai owkin dataiku contentsquare doctolib alan qonto mirakl backmarket criteo blablacar
+n26 trade-republic traderepublic personio celonis deepl deeplse flix flixbus zalando deliveryhero hellofresh
+spotify klarna king tink northvolt einride voi bolt wolt supercell rovio relexsolutions iqm
+adyen mollie picnic bunq booking messagebird bird miro elastic sennder taxfix gorillas getir
+cognite kahoot oda vinted revolut wise monzo starling cleo tractable polyai faculty isomorphiclabs
+graphcore darktrace ocado deliveroo improbable featurespace onfido quantexa signal-ai stabilityai
+lovable legora neko sana sanalabs h-company hcompany pigment swile ledger shift-technology
+# UK & Ireland
+wayve deepmind synthesia polyai cleo monzo wise thoughtmachine paddle multiverse gocardless
+# India
+razorpay cred meesho swiggy zomato phonepe sarvam sarvamai krutrim flipkart myntra freshworks postman browserstack
+zeta groww zerodha upstox dream11 dreamsports sharechat mohalla rapido ola olaelectric ather nykaa lenskart
+urbancompany unacademy byjus vedantu physicswallah practo innovaccer fractal fractalanalytics tigeranalytics mu-sigma
+mad-street-den madstreetden haptik yellowai yellow-ai gupshup observeai uniphore sprinklr hasura chargebee
+druva icertis mindtickle whatfix darwinbox leena-ai leenaai skit-ai skit glean slice jupiter fi navi
+# Asia (SG, JP, KR, CN-intl, SEA)
+grab sea shopee gojek goto tokopedia traveloka bukalapak lazada ninjavan carousell propertyguru shopback
+preferrednetworks preferred-networks sakana sakanaai mercari smartnews line lineyahoo rakuten paypay moneyforward
+kakao naver coupang toss vivarepublica upstage krafton nexon hyperconnect moloco
+agoda bytedance tiktok shein klook xendit nium airwallex aspire advance-ai advanceai
+# Australia & NZ
+canva atlassian airwallex safetyculture cultureamp culture-amp harrisonai harrison-ai employmenthero
+immutable linktree rokt xero seek afterpay zip blackbird octopus-deploy deputy buildkite
+# Africa
+andela flutterwave paystack yoco takealot instadeep chippercash moniepoint kuda cellulant mpesa
+jumia wave lemfi tala branch mnt-halan halan swvl vezeeta breadfast
+# LatAm
+nubank mercadolibre rappi kavak clip ifood quintoandar loft wildlifestudios stone creditas bitso konfio
+cornershop justo frubana platzi dlocal uala belvo truora habi addi nowports

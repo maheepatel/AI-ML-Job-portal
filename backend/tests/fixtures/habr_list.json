@@ -1,0 +1,261 @@
+{
+ "list": [
+  {
+   "id": 1000170085,
+   "href": "/vacancies/1000170085",
+   "title": "Инженер машинного обучения",
+   "isMarked": true,
+   "remoteWork": true,
+   "salaryQualification": {
+    "title": "Старший (Senior)",
+    "href": "/vacancies?qid=5"
+   },
+   "publishedDate": {
+    "date": "2026-11-13T16:30:20+03:00",
+    "title": "13 ноября"
+   },
+   "location": null,
+   "company": {
+    "id": 1000119306,
+    "alias_name": "top-selection",
+    "href": "/companies/top-selection",
+    "title": "Top Selection",
+    "accredited": false,
+    "logo": {
+     "src": "https://habrastorage.org/getpro/moikrug/uploads/company/100/008/086/9/logo/medium_471913a34c9e1fd546aecd2d816485c8.png"
+    },
+    "rating": null
+   },
+   "employment": "full_time",
+   "salary": {
+    "from": 250000,
+    "to": 270000,
+    "currency": "rur",
+    "formatted": "от 250 000 до 270 000 ₽"
+   },
+   "divisions": [
+    {
+     "title": "ML разработчик",
+     "href": "/vacancies/spec/ai/ml-engineer"
+    }
+   ],
+   "skills": [
+    {
+     "title": "Python",
+     "href": "/vacancies/programmist_python"
+    },
+    {
+     "title": "SQL",
+     "href": "/vacancies/programmist_sql"
+    },
+    {
+     "title": "PostgreSQL",
+     "href": "/vacancies/skills/postgresql"
+    },
+    {
+     "title": "Pandas",
+     "href": "/vacancies/skills/pandas"
+    }
+   ],
+   "locations": null,
+   "favorite": false,
+   "archived": false,
+   "hidden": false,
+   "can_edit": false,
+   "userVacancyBanHref": "/api/frontend/user_vacancy_bans",
+   "quickResponseHref": "/api/frontend/quick_responses",
+   "qualification": "Senior",
+   "externalLink": null,
+   "predictedSalary": null,
+   "response": {
+    "kind": "guest"
+   },
+   "hasPublishedCBP": true,
+   "color": "#001C66"
+  },
+  {
+   "id": 1000169302,
+   "href": "/vacancies/1000169302",
+   "title": "Machine Learning Engineer (Generative AI / Computer Vision)",
+   "isMarked": true,
+   "remoteWork": true,
+   "salaryQualification": null,
+   "publishedDate": {
+    "date": "2026-11-15T14:27:14+03:00",
+    "title": "15 ноября"
+   },
+   "location": null,
+   "company": {
+    "id": 1000106277,
+    "alias_name": "jetlyn",
+    "href": "/companies/jetlyn",
+    "title": "Джетлин",
+    "accredited": true,
+    "logo": {
+     "src": "https://habrastorage.org/getpro/moikrug/uploads/company/100/006/784/0/logo/medium_4c88611c018b065f0cad34b848b033c5.png"
+    },
+    "rating": {
+     "title": "Средняя оценка компании в 2024 году",
+     "value": "4.79",
+     "href": "/companies/jetlyn/scores/2024"
+    }
+   },
+   "employment": "full_time",
+   "salary": {
+    "from": null,
+    "to": null,
+    "currency": null,
+    "formatted": ""
+   },
+   "divisions": [
+    {
+     "title": "ML разработчик",
+     "href": "/vacancies/spec/ai/ml-engineer"
+    }
+   ],
+   "skills": [
+    {
+     "title": "Python",
+     "href": "/vacancies/programmist_python"
+    },
+    {
+     "title": "NLP",
+     "href": "/vacancies/skills/nlp"
+    },
+    {
+     "title": "LLM",
+     "href": "/vacancies/skills/llm"
+    },
+    {
+     "title": "PyTorch",
+     "href": "/vacancies/skills/pytorch"
+    },
+    {
+     "title": "NumPy",
+     "href": "/vacancies/skills/numpy"
+    }
+   ],
+   "locations": null,
+   "favorite": false,
+   "archived": false,
+   "hidden": false,
+   "can_edit": false,
+   "userVacancyBanHref": "/api/frontend/user_vacancy_bans",
+   "quickResponseHref": "/api/frontend/quick_responses",
+   "qualification": null,
+   "externalLink": null,
+   "predictedSalary": {
+    "from": 152000,
+    "to": 360000,
+    "currency": "rur",
+    "formatted": "от 152 000 до 360 000 ₽"
+   },
+   "response": {
+    "kind": "guest"
+   },
+   "hasPublishedCBP": true,
+   "color": "#12122A"
+  },
+  {
+   "id": 1000169574,
+   "href": "/vacancies/1000169574",
+   "title": "Senior ML Engineer (Python / NLP / LLM)",
+   "isMarked": true,
+   "remoteWork": true,
+   "salaryQualification": {
+    "title": "Ведущий (Lead)",
+    "href": "/vacancies?qid=6"
+   },
+   "publishedDate": {
+    "date": "2026-11-12T13:02:29+03:00",
+    "title": "12 ноября"
+   },
+   "location": null,
+   "company": {
+    "id": 1000093994,
+    "alias_name": "ithunter",
+    "href": "/companies/ithunter",
+    "title": "IT-hunter",
+    "accredited": false,
+    "logo": {
+     "src": "https://habrastorage.org/getpro/moikrug/uploads/company/100/005/555/7/logo/medium_08d01c682c865c3180309af806e3363c.png"
+    },
+    "rating": null
+   },
+   "employment": "full_time",
+   "salary": {
+    "from": null,
+    "to": null,
+    "currency": null,
+    "formatted": ""
+   },
+   "divisions": [
+    {
+     "title": "ML разработчик",
+     "href": "/vacancies/spec/ai/ml-engineer"
+    }
+   ],
+   "skills": [
+    {
+     "title": "Python",
+     "href": "/vacancies/skills/python"
+    },
+    {
+     "title": "NLP",
+     "href": "/vacancies/skills/nlp"
+    },
+    {
+     "title": "LLM",
+     "href": "/vacancies/skills/llm"
+    },
+    {
+     "title": "PyTorch",
+     "href": "/vacancies/skills/pytorch"
+    },
+    {
+     "title": "Машинное обучение",
+     "href": "/vacancies/skills/mashinnoe-obuchenie"
+    },
+    {
+     "title": "Apache Kafka",
+     "href": "/vacancies/skills/kafka"
+    },
+    {
+     "title": "PostgreSQL",
+     "href": "/vacancies/skills/postgresql"
+    }
+   ],
+   "locations": [
+    {
+     "title": "Москва",
+     "href": "/vacancies?city_id=678"
+    }
+   ],
+   "favorite": false,
+   "archived": false,
+   "hidden": false,
+   "can_edit": false,
+   "userVacancyBanHref": "/api/frontend/user_vacancy_bans",
+   "quickResponseHref": "/api/frontend/quick_responses",
+   "qualification": "Lead",
+   "externalLink": null,
+   "predictedSalary": {
+    "from": 400000,
+    "to": 630000,
+    "currency": "rur",
+    "formatted": "от 400 000 до 630 000 ₽"
+   },
+   "response": {
+    "kind": "guest"
+   },
+   "hasPublishedCBP": false,
+   "color": null
+  }
+ ],
+ "meta": {
+  "totalResults": 3,
+  "perPage": 25,
+  "currentPage": 1,
+  "totalPages": 1
+ }
+}

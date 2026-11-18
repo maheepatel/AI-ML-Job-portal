@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:tt="https://teamtailor.com/locations">
+  <channel>
+    <title>Polestar</title>
+    <description>Our job openings</description>
+    <link>https://polestar.teamtailor.com/jobs</link>
+    <item>
+      <title>Machine Learning Engineer, Autonomy</title>
+      <description>&lt;p&gt;&lt;strong&gt;The opportunity&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;span&gt;We’re currently looking for a &lt;strong&gt;Regional HR Business Partner&lt;/strong&gt; to join our HR Business Commercial team and support our BeNeLux markets. This is an opportunity for an experienced HR professional who enjoys being close to the business, partnering with leaders and translating regional people priorities into meaningful local action.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span</description>
+      <pubDate>Thu, 12 Nov 2026 13:57:12 +0100</pubDate>
+      <link>https://polestar.teamtailor.com/jobs/8710722-regional-hr-business-partner-benelux</link>
+      <remoteStatus>none</remoteStatus>
+      <guid>14093550-daa8-41e6-8a60-0b9722d1d4db</guid>
+      <company_name>Polestar</company_name>
+      <company_uuid>K5gBpFXnPio</company_uuid>
+      <tt:locations>
+        <tt:location>
+          <tt:name>Brussels, Belgium</tt:name>
+          <tt:address/>
+          <tt:zip>1000</tt:zip>
+          <tt:city>Brussels</tt:city>
+          <tt:country>Belgium</tt:country>
+        </tt:location>
+        <tt:location>
+          <tt:name>Beesd, Netherlands</tt:name>
+          <tt:address/>
+          <tt:zip>4153</tt:zip>
+          <tt:city>Beesd</tt:city>
+          <tt:country>Netherlands</tt:country>
+        </tt:location>
+      </tt:locations>
+      <tt:department>Human Resources</tt:department>
+      <tt:role/>
+    </item>
+<item>
+      <title>HR Trainee - Projects | UK</title>
+      <description>&lt;div&gt;&lt;p&gt;&lt;span&gt;&lt;strong&gt;The opportunity&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;&lt;span&gt;We're looking for an HR Projects Admin to join our HR Business Commercial team on a six-month fixed-term contract, supporting a defined programme of HR data, systems and employee communication improvement work across the UK Sales Unit.&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;&lt;span</description>
+      <pubDate>Tue, 10 Nov 2026 13:40:50 +0100</pubDate>
+      <link>https://polestar.teamtailor.com/jobs/8697867-hr-trainee-projects-uk</link>
+      <remoteStatus>onsite</remoteStatus>
+      <guid>34d0328a-3b09-41dd-a480-85fca2042f85</guid>
+      <company_name>Polestar</company_name>
+      <company_uuid>K5gBpFXnPio</company_uuid>
+      <tt:locations>
+        <tt:location>
+          <tt:name>Bicester, UK</tt:name>
+          <tt:address>OX27 8FY</tt:address>
+          <tt:zip>OX27 8FY</tt:zip>
+          <tt:city>Bicester</tt:city>
+          <tt:country>United Kingdom</tt:country>
+        </tt:location>
+      </tt:locations>
+      <tt:department>Human Resources</tt:department>
+      <tt:role/>
+    </item>
+  </channel>
+</rss>

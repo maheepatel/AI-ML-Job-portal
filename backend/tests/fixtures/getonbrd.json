@@ -1,0 +1,203 @@
+{
+ "data": [
+  {
+   "id": "computer-vision-con-deep-learning-concepcion-diurno-duoc-uc-concepcion",
+   "type": "job",
+   "attributes": {
+    "title": "Computer Vision con Deep Learning Concepción Diurno",
+    "description_headline": "Requerimientos del cargo",
+    "description": "<ul><li>Formación: Ingeniero (a)en Informática Ingeniero(a) en computación Ingeniero(a) eléctrico(a) Fí sico(a) Matemático(a) Cientista de Datos </li><li>Experiencia: Mínimo 5 años de experiencia en Ingeniería de Datos, Ciencia de Datos, Deep Learning, Machine Learning Experiencia específica: Al menos 5 años de experiencia en diseño, implementación , investigación de arquitecturas de sistemas de Deep Learning y gestión de proyectos relacionados con la IA, en particular en proyectos de Visión por",
+    "projects": "<p>Duoc UC es una institución de educación superior técnico profesional autónoma y católica, con más de 50 años de historia y la máxima acreditación institucional. Nos enfocamos en formar técnicos y profesionales a través de 9 escuelas y más de 70 carreras vigentes, presentes en 18 sedes regionales. Nuestro equipo docente colabora en entornos multidisciplinarios y con enfoque en valores institucionales, buscando aportar al desarrollo económico de Chile mediante una educación de calidad y actuali",
+    "functions_headline": "Funciones del cargo",
+    "functions": "<p>Duoc UC Sede Concepción, Escuela de Informática y Telecomunicaciones requiere contratar docente para la asignatura de Computer Visioncon Mschine Learning con disponibilidad en jornada diurna que será responsable de liderar el proceso de enseñanza y aprendizaje de acuerdo con el modelo educativo, alineado al marco valórico institucional, movilizando su formación y experiencia profesional, valores y conocimiento disciplinar, para ser un real aporte al aprendizaje de los estudiantes. </p>",
+    "benefits_headline": "Condiciones",
+    "benefits": "<p>La institución ofrece un entorno educativo con trayectoria, enfoque en valores institucionales y desarrollo profesional. Jornada diurna en la sede San Carlos de Apoquindo, posibilidad de integrarse a equipos multicisciplinarios, y apoyo para desarrollo docente y actualización tecnológica. Otras condiciones y beneficios serán detallados en la etapa de contratación y contrato, conforme a las políticas de Duoc UC.</p>",
+    "desirable_headline": "Opcionales",
+    "desirable": "",
+    "remote": false,
+    "remote_modality": "no_remote",
+    "remote_zone": null,
+    "countries": [
+     "Chile"
+    ],
+    "lang": "lang_not_specified",
+    "category_name": "Machine Learning & AI",
+    "perks": [],
+    "min_salary": null,
+    "max_salary": null,
+    "published_at": 1794510840,
+    "response_time_in_days": {
+     "min": null,
+     "max": null
+    },
+    "applications_count": 3,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": []
+    },
+    "location_cities": {
+     "data": [
+      {
+       "id": 2,
+       "type": "location_city"
+      }
+     ]
+    },
+    "modality": {
+     "data": {
+      "id": 1,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 4,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 163,
+       "type": "tag"
+      },
+      {
+       "id": 168,
+       "type": "tag"
+      },
+      {
+       "id": 224,
+       "type": "tag"
+      },
+      {
+       "id": 262,
+       "type": "tag"
+      },
+      {
+       "id": 938,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "duoc-uc-cl",
+      "type": "company",
+      "attributes": {
+       "name": "Duoc UC"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/computer-vision-con-deep-learning-concepcion-diurno-duoc-uc-concepcion"
+   }
+  },
+  {
+   "id": "docente-fundamentos-de-machine-learning-plaza-norte-duoc-uc-santiago",
+   "type": "job",
+   "attributes": {
+    "title": "Docente Fundamentos de Machine Learning Plaza Norte",
+    "description_headline": "Requerimientos del cargo",
+    "description": "<ul><li>Formación: Ingeniería Informática afín al área de desarrollo de Software con Python/Machine Learning/Minería de Datos. </li><li>Experiencia: 3 años</li><li>Otros Requisitos: Manejo en metodologías como: CRISP-DM-KDD, SEMMA. / Conocimientos de estadística descriptiva e inferencial. Manejo de Python.</li></ul>",
+    "projects": "<p>Duoc UC es una institución de educación superior técnico profesional autónoma y católica, con más de 50 años de historia y la máxima acreditación institucional. Nos enfocamos en formar técnicos y profesionales a través de 9 escuelas y más de 70 carreras vigentes, presentes en 18 sedes regionales. Nuestro equipo docente colabora en entornos multidisciplinarios y con enfoque en valores institucionales, buscando aportar al desarrollo económico de Chile mediante una educación de calidad y actuali",
+    "functions_headline": "Funciones del cargo",
+    "functions": "<p>Duoc UC Sede Plaza Norte, Escuela de Informática y Telecomunicaciones requiere contratar docente para la asignatura de Fundamentos de Machine Learning que será responsable de liderar el proceso de enseñanza y aprendizaje de acuerdo con el modelo educativo, alineado al marco valórico institucional, movilizando su formación y experiencia profesional, valores y conocimiento disciplinar, para ser un real aporte al aprendizaje de los estudiantes. </p>",
+    "benefits_headline": "Condiciones",
+    "benefits": "<p>La institución ofrece un entorno educativo con trayectoria, enfoque en valores institucionales y desarrollo profesional. Jornada diurna en la sede San Carlos de Apoquindo, posibilidad de integrarse a equipos multicisciplinarios, y apoyo para desarrollo docente y actualización tecnológica. Otras condiciones y beneficios serán detallados en la etapa de contratación y contrato, conforme a las políticas de Duoc UC.</p>",
+    "desirable_headline": "Opcionales",
+    "desirable": "",
+    "remote": false,
+    "remote_modality": "no_remote",
+    "remote_zone": null,
+    "countries": [
+     "Chile"
+    ],
+    "lang": "lang_not_specified",
+    "category_name": "Education & Coaching",
+    "perks": [],
+    "min_salary": null,
+    "max_salary": null,
+    "published_at": 1794508118,
+    "response_time_in_days": {
+     "min": null,
+     "max": null
+    },
+    "applications_count": 3,
+    "location_regions": {
+     "data": []
+    },
+    "location_tenants": {
+     "data": []
+    },
+    "location_cities": {
+     "data": [
+      {
+       "id": 1,
+       "type": "location_city"
+      }
+     ]
+    },
+    "modality": {
+     "data": {
+      "id": 1,
+      "type": "modality"
+     }
+    },
+    "seniority": {
+     "data": {
+      "id": 3,
+      "type": "seniority"
+     }
+    },
+    "tags": {
+     "data": [
+      {
+       "id": 18,
+       "type": "tag"
+      },
+      {
+       "id": 163,
+       "type": "tag"
+      },
+      {
+       "id": 731,
+       "type": "tag"
+      },
+      {
+       "id": 4066,
+       "type": "tag"
+      },
+      {
+       "id": 4117,
+       "type": "tag"
+      },
+      {
+       "id": 85925,
+       "type": "tag"
+      }
+     ]
+    },
+    "company": {
+     "data": {
+      "id": "duoc-uc-cl",
+      "type": "company",
+      "attributes": {
+       "name": "Duoc UC"
+      }
+     }
+    }
+   },
+   "links": {
+    "public_url": "https://www.getonbrd.com/jobs/docente-fundamentos-de-machine-learning-plaza-norte-duoc-uc-santiago"
+   }
+  }
+ ],
+ "meta": {
+  "page": 1,
+  "per_page": 3,
+  "total_pages": 7
+ }
+}

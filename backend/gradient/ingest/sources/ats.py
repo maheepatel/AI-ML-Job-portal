@@ -22,7 +22,7 @@ class Greenhouse(AtsSource):
     name = "greenhouse"
 
     async def fetch(self, http: Http) -> FetchResult:
-        data = await http.get_json(f"https://boards-api.greenhouse.io/v1/boards/{self.slug}/jobs?content=true")
+        data = await http.get_json(f"https://boards-api.greenhouse.io/v1/boards/{self.slug}/jobs?content=true", timeout=90)  # some boards are 10MB+
         out = FetchResult()
         for j in data.get("jobs", []):
             jid = str(j["id"])

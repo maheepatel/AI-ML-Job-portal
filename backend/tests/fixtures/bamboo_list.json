@@ -1,0 +1,43 @@
+{
+ "meta": {
+  "totalCount": 2
+ },
+ "result": [
+  {
+   "id": "774",
+   "jobOpeningName": "Director - HCM Sales",
+   "departmentId": "18589",
+   "departmentLabel": "Sales & Marketing",
+   "employmentStatusLabel": "Full-Time",
+   "employmentType": null,
+   "location": {
+    "city": null,
+    "state": null
+   },
+   "atsLocation": {
+    "country": "United States",
+    "state": "California",
+    "province": null,
+    "city": "San Jose"
+   },
+   "isRemote": null,
+   "locationType": "1"
+  },
+  {
+   "id": "1058",
+   "jobOpeningName": "Associate AI Software Engineer",
+   "employmentStatusLabel": "Full-Time",
+   "location": {
+    "city": null,
+    "state": null
+   },
+   "atsLocation": {
+    "country": "United States",
+    "state": "Texas",
+    "city": "Addison"
+   },
+   "isRemote": null,
+   "locationType": "0"
+  }
+ ]
+}

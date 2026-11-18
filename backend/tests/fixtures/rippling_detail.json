@@ -1,0 +1,19 @@
+{
+ "uuid": "f255bf03-9173-4c0a-8a18-7cc43c27ded8",
+ "name": "Data Science Intern - Summer 2027",
+ "description": {
+  "company": "<div><body><h2 style='font-family:\"Basel Grotesk\",Arial,sans-serif;line-height:1.6;font-size:15pt;font-weight:600;letter-spacing:0.5px;margin-top:18px;margin-bottom:4px;padding-left:0px;'><b><strong style=\"white-space:pre-wrap;\">About Rippling</strong></b></h2><p style='font-family:\"Basel Grotesk\",Arial,sans-serif;font-size:11pt;font-weight:400;line-height:1.6;letter-spacing:0.25px;margin:4px 0px;",
+  "role": "<p>Build machine learning models with Python and PyTorch. Pursuing a degree; 0-1 years of experience.</p>"
+ },
+ "workLocations": [
+  "San Francisco, CA"
+ ],
+ "employmentType": {
+  "label": "SALARIED_FT",
+  "id": "Salaried, full-time"
+ },
+ "createdOn": "2026-11-17T03:28:26.937000-08:00",
+ "url": "https://ats.rippling.com/rippling/jobs/f255bf03-9173-4c0a-8a18-7cc43c27ded8",
+ "companyName": "Rippling",
+ "payRangeDetails": []
+}

@@ -1,0 +1,211 @@
+{
+ "results": [
+  {
+   "uuid": "17beea842a0735dbf213e5b7f3c0ed4f",
+   "sourceCode": "Employer Portal",
+   "title": "[T04] Machine Learning Engineer (ML) - Permanent Role",
+   "description": "<p>We are seeking an experienced Senior Data Scientist / Machine Learning Engineer to join our dynamic team. As a Senior Data Scientist / Machine Learning Engineer, you will play a key role in analyzing and presenting data, developing and implementing machine learning models and algorithms to solve complex business problems. Your expertise will contribute to enhancing the delivery service of analytics solutions and products to our customers.</p><p><strong>Job Responsibilities:</strong></p><ul><li>Data analysis and insights: Perform exploratory data analysis, generate insights, and present findings to stakeholders. Use statistical methods and visualization techniques to communicate complex concepts and patterns effectively.</li><li>Develop and deploy machine learning models: Design, build, ",
+   "minimumYearsExperience": 4,
+   "shiftPattern": null,
+   "schemes": [],
+   "flexibleWorkArrangements": [],
+   "otherRequirements": null,
+   "ssocCode": "25190",
+   "occupationId": "OCC013825",
+   "ssocVersion": "2020v3",
+   "workingHours": null,
+   "numberOfVacancies": 3,
+   "psdUrl": null,
+   "categories": [
+    {
+     "id": 21,
+     "category": "Information Technology"
+    }
+   ],
+   "employmentTypes": [
+    {
+     "id": 7,
+     "employmentType": "Permanent"
+    },
+    {
+     "id": 8,
+     "employmentType": "Full Time"
+    }
+   ],
+   "positionLevels": [
+    {
+     "id": 8,
+     "position": "Senior Executive"
+    }
+   ],
+   "status": {
+    "id": 102,
+    "jobStatus": "Open"
+   },
+   "ssecEqa": "70",
+   "ssecFos": "0911",
+   "postedCompany": {
+    "name": "TALENTSIS PTE. LTD.",
+    "uen": "202030608W"
+   },
+   "hiringCompany": null,
+   "address": {
+    "overseasCountry": null,
+    "foreignAddress1": null,
+    "foreignAddress2": null,
+    "block": null,
+    "street": null,
+    "floor": null,
+    "unit": null,
+    "building": null,
+    "postalCode": null,
+    "isOverseas": false,
+    "districts": [
+     {
+      "id": 998,
+      "location": "Islandwide",
+      "region": "Islandwide",
+      "sectors": [],
+      "regionId": "Islandwide"
+     }
+    ]
+   },
+   "metadata": {
+    "jobPostId": "MCF-2026-2028102",
+    "deletedAt": null,
+    "createdBy": "614d9b97-eaeb-443a-912c-505ddae234db",
+    "createdAt": "2026-11-16T01:45:43.000Z",
+    "updatedAt": "2026-11-16T01:45:43.000Z",
+    "emailRecipient": "614d9b97-eaeb-443a-912c-505ddae234db",
+    "editCount": 0,
+    "repostCount": 0,
+    "totalNumberOfView": 27,
+    "newPostingDate": "2026-11-16",
+    "originalPostingDate": "2026-11-16",
+    "expiryDate": "2026-12-16",
+    "totalNumberJobApplication": 1,
+    "isJdEnhanced": false,
+    "isPostedOnBehalf": false,
+    "isHideSalary": false,
+    "isHideCompanyAddress": false,
+    "isHideHiringEmployerName": false,
+    "isHideEmployerName": false,
+    "jobDetailsUrl": "https://www.mycareersfuture.gov.sg/job/information-technology/t04-machine-learning-engineer-permanent-role-talentsis-17beea842a0735dbf213e5b7f3c0ed4f",
+    "matchedSkillsScore": null
+   },
+   "salary": {
+    "maximum": 6500,
+    "minimum": 5500,
+    "type": {
+     "id": 4,
+     "salaryType": "Monthly"
+    }
+   },
+   "jobTitles": []
+  },
+  {
+   "uuid": "8f483043ecaea65b5d46ff2e16004449",
+   "sourceCode": "Employer Portal",
+   "title": "[T04] Machine Learning Engineer (ML) - Permanent Role",
+   "description": "<p>We are seeking an experienced Senior Data Scientist / Machine Learning Engineer to join our dynamic team. As a Senior Data Scientist / Machine Learning Engineer, you will play a key role in analyzing and presenting data, developing and implementing machine learning models and algorithms to solve complex business problems. Your expertise will contribute to enhancing the delivery service of analytics solutions and products to our customers.</p><p><strong>Job Responsibilities:</strong></p><ul><li>Data analysis and insights: Perform exploratory data analysis, generate insights, and present findings to stakeholders. Use statistical methods and visualization techniques to communicate complex concepts and patterns effectively.</li><li>Develop and deploy machine learning models: Design, build, ",
+   "minimumYearsExperience": 4,
+   "shiftPattern": null,
+   "schemes": [],
+   "flexibleWorkArrangements": [],
+   "otherRequirements": null,
+   "ssocCode": "25190",
+   "occupationId": "OCC013825",
+   "ssocVersion": "2020v3",
+   "workingHours": null,
+   "numberOfVacancies": 3,
+   "psdUrl": null,
+   "categories": [
+    {
+     "id": 21,
+     "category": "Information Technology"
+    }
+   ],
+   "employmentTypes": [
+    {
+     "id": 7,
+     "employmentType": "Permanent"
+    },
+    {
+     "id": 8,
+     "employmentType": "Full Time"
+    }
+   ],
+   "positionLevels": [
+    {
+     "id": 8,
+     "position": "Senior Executive"
+    }
+   ],
+   "status": {
+    "id": 102,
+    "jobStatus": "Open"
+   },
+   "ssecEqa": "70",
+   "ssecFos": "0911",
+   "postedCompany": {
+    "name": "TALENTSIS PTE. LTD.",
+    "uen": "202030608W"
+   },
+   "hiringCompany": null,
+   "address": {
+    "overseasCountry": null,
+    "foreignAddress1": null,
+    "foreignAddress2": null,
+    "block": null,
+    "street": null,
+    "floor": null,
+    "unit": null,
+    "building": null,
+    "postalCode": null,
+    "isOverseas": false,
+    "districts": [
+     {
+      "id": 998,
+      "location": "Islandwide",
+      "region": "Islandwide",
+      "sectors": [],
+      "regionId": "Islandwide"
+     }
+    ]
+   },
+   "metadata": {
+    "jobPostId": "MCF-2026-1976077",
+    "deletedAt": null,
+    "createdBy": "614d9b97-eaeb-443a-912c-505ddae234db",
+    "createdAt": "2026-11-06T07:48:53.000Z",
+    "updatedAt": "2026-11-06T07:48:53.000Z",
+    "emailRecipient": "614d9b97-eaeb-443a-912c-505ddae234db",
+    "editCount": 0,
+    "repostCount": 0,
+    "totalNumberOfView": 94,
+    "newPostingDate": "2026-11-06",
+    "originalPostingDate": "2026-11-06",
+    "expiryDate": "2026-12-06",
+    "totalNumberJobApplication": 6,
+    "isJdEnhanced": false,
+    "isPostedOnBehalf": false,
+    "isHideSalary": false,
+    "isHideCompanyAddress": false,
+    "isHideHiringEmployerName": false,
+    "isHideEmployerName": false,
+    "jobDetailsUrl": "https://www.mycareersfuture.gov.sg/job/information-technology/t04-machine-learning-engineer-permanent-role-talentsis-8f483043ecaea65b5d46ff2e16004449",
+    "matchedSkillsScore": null
+   },
+   "salary": {
+    "maximum": 6500,
+    "minimum": 5500,
+    "type": {
+     "id": 4,
+     "salaryType": "Monthly"
+    }
+   },
+   "jobTitles": []
+  }
+ ],
+ "total": 2
+}

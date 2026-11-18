@@ -23,9 +23,11 @@ Architecture and design decisions: [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Sources
 
-- **Employer ATS (authoritative):** Greenhouse, Lever, Ashby, Workable, Recruitee, SmartRecruiters, Workday. The registry holds about 2,000 company boards and grows on its own: any ATS link seen in any listing registers that company's whole board.
-- **Big tech:** Amazon Jobs, Microsoft Careers, plus Workday tenants (NVIDIA, Adobe, Intel, Salesforce, Cisco, Micron, Capital One …).
-- **Aggregators:** LinkedIn public guest listings, SimplifyJobs new-grad and internship lists, Hacker News "Who is hiring", Remotive, RemoteOK, Himalayas, Jobicy, The Muse, Arbeitnow.
+- **Employer ATS (authoritative):** Greenhouse, Lever, Ashby, Workable, Recruitee, SmartRecruiters, Personio, Teamtailor, BambooHR, Breezy, JazzHR, Rippling. The registry grows on its own: any ATS link seen in any listing registers that company's whole board. Curated boards by region (US, EU, UK, India, Asia, Australia, Africa, LatAm) live in `backend/data/companies.yaml`.
+- **YC startups:** the ATS boards of YC companies (`backend/data/yc_boards.yaml`, plus boards found each run by crawling a rotating slice of YC company websites from the yc-oss directory), and YC's own job board on ycombinator.com (role pages plus a rotating slice of AI/ML-tagged hiring companies, kept under the site's rate limit).
+- **Big tech:** Amazon Jobs, Microsoft Careers, Workday tenants (NVIDIA, Adobe, Intel, Salesforce, Cisco …) and Oracle Recruiting Cloud sites (JPMorgan, American Express, BNY, Nokia, Dell …).
+- **Regional:** MyCareersFuture (Singapore), Get on Board (LatAm), Habr Career (Russia/CIS), Arbeitnow (EU).
+- **Aggregators:** LinkedIn public guest listings, SimplifyJobs new-grad and internship lists, Hacker News "Who is hiring", Remotive, RemoteOK, Himalayas, Jobicy, Working Nomads.
 
 Only public data is read. There is no login scraping and no CAPTCHA or bot-wall bypass. Sites behind bot
 walls (Naukri, Wellfound, Instahyre) are covered indirectly, because their employers post on their own ATS, which

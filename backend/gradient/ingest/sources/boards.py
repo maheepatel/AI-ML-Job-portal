@@ -1,6 +1,5 @@
 """Public job boards with open APIs, and Hacker News 'Who is hiring?'."""
 
-import asyncio
 import re
 
 from ...domain.normalize import html_to_text, parse_dt
@@ -144,40 +143,6 @@ class Jobicy(BoardSource):
         return out
 
 
-class TheMuse(BoardSource):
-    name = "themuse"
-
-    def __init__(self):
-        super().__init__("jobs", "The Muse")
-
-    async def fetch(self, http: Http) -> FetchResult:
-        out = FetchResult()
-
-        async def page(category: str, n: int):
-            params = [("category", category), ("level", "Entry Level"), ("level", "Mid Level"), ("level", "Internship"), ("page", n)]
-            return await http.get_json("https://www.themuse.com/api/public/jobs", params=params)
-
-        pages = await asyncio.gather(
-            *(page(c, n) for c in ("Data and Analytics", "Data Science", "Software Engineering") for n in range(0, 5)),
-            return_exceptions=True,
-        )
-        for data in pages:
-            if isinstance(data, Exception):
-                continue
-            for j in data.get("results", []):
-                jid = str(j["id"])
-                if jid in out.seen_ids:
-                    continue
-                out.seen_ids.add(jid)
-                out.jobs.append(RawJob(
-                    source_job_id=jid, title=j.get("name", ""), company=(j.get("company") or {}).get("name", ""),
-                    url=(j.get("refs") or {}).get("landing_page", ""), description=j.get("contents", ""),
-                    location=" / ".join(loc.get("name", "") for loc in j.get("locations", [])),
-                    posted_at=parse_dt(j.get("publication_date")),
-                ))
-        return out
-
-
 _HN_ROLE = re.compile(
     r"(machine learning|ml|ai|data scien|applied scien|research (engineer|scientist)|llm|nlp|computer vision|mlops|deep learning|data engineer|data analyst)",
     re.I,
@@ -229,4 +194,5 @@ class HackerNewsHiring(Source):
         return out
 
 
-BOARD_SOURCES = [Remotive, RemoteOK, Arbeitnow, Himalayas, Jobicy, TheMuse, HackerNewsHiring]
+# The Muse was dropped in Nov 2026: its public API now answers 404 for every request.
+BOARD_SOURCES = [Remotive, RemoteOK, Arbeitnow, Himalayas, Jobicy, HackerNewsHiring]

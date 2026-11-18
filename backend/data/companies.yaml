@@ -1,4 +1,9 @@
-# Company registry. Add slugs here or run scripts/discover_ats.py / scripts/expand_registry.py
+# Company registry: curated boards seeded on every run (origin "curated").
+# Plain slugs for Greenhouse/Lever/Ashby/Workable/SmartRecruiters/Recruitee/Personio/Teamtailor/
+# BambooHR/Breezy/JazzHR/Rippling; dicts for Workday (tenant/wd/site) and Oracle (host/site).
+# Find boards with: python scripts/discover_ats.py --file scripts/candidates_world.txt
+# Regions covered (see scripts/candidates_world.txt): US AI labs + big tech, EU, UK, India,
+# Asia (SG/JP/KR/SEA), Australia/NZ, Africa, LatAm. YC startups live in yc_boards.yaml.
 greenhouse:
 - affirm
 - airbnb
@@ -86,6 +91,42 @@ greenhouse:
 - wise
 - xai
 - zscaler
+- coupang
+- hellofresh
+- agoda
+- adyen
+- graphcore
+- block
+- wolt
+- deliveroo
+- flix
+- tenstorrent
+- quintoandar
+- paypay
+- apptronik
+- lightmatter
+- moniepoint
+- cognite
+- krafton
+- lovable
+- moloco
+- kodiak
+- fastly
+- isomorphiclabs
+- cultureamp
+- bird
+- gocardless
+- n26
+- figure
+- mirakl
+- xendit
+- jumia
+- shein
+- wildlifestudios
+- cleo
+- buildkite
+- branch
+- polyai
 ashby:
 - 1password
 - abridge
@@ -151,6 +192,44 @@ ashby:
 - webflow
 - writer
 - zapier
+- airwallex
+- legora
+- applied
+- doctolib
+- alan
+- cerebras
+- etched
+- xero
+- zip
+- 1x
+- cursor
+- faculty
+- lovable
+- qonto
+- quantexa
+- mollie
+- rain
+- d-matrix
+- addi
+- backmarket
+- supercell
+- hcompany
+- lemfi
+- multiverse
+- ledger
+- paddle
+- character
+- deliveroo
+- owkin
+- magic
+- sanctuary
+- deepl
+- photoroom
+- tractable
+- alephalpha
+- improbable
+- andela
+- belvo
 smartrecruiters:
 - BoschGroup
 - canva
@@ -171,6 +250,9 @@ smartrecruiters:
 - wayfair
 - whatfix
 - wise
+- deliveryhero
+- grab
+- palantir
 lever:
 - anyscale
 - cred
@@ -185,9 +267,24 @@ lever:
 - waabi
 - zeta
 - zoox
+- palantir
+- ninjavan
+- pigment
+- spotify
+- nium
+- contentsquare
+- swile
+- mindtickle
+- tala
+- iqm
+- blablacar
+- kavak
+- immutable
+- deputy
 recruitee:
 - gong
 - navi
+- bunq
 workday:
 - tenant: adobe
   wd: wd5
@@ -301,4 +398,72 @@ workday:
   wd: wd5
   site: Workday
   company: Workday
-workable: []
+workable:
+- huggingface
+teamtailor:
+- iqm
+- paystack
+oracle:
+- host: egug.fa.us2.oraclecloud.com
+  site: CX_1
+  company: American Express
+- host: jpmc.fa.oraclecloud.com
+  site: CX_1001
+  company: JPMorgan Chase
+- host: fa-etbx-saasfaprod1.fa.ocs.oraclecloud.com
+  site: nfcu
+  company: Navy Federal Credit Union
+- host: eofe.fa.us2.oraclecloud.com
+  site: CX_1001
+  company: BNY
+- host: hdjq.fa.us2.oraclecloud.com
+  site: CX_1
+  company: Emerson
+- host: fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com
+  site: CX_1
+  company: Nokia
+- host: eedu.fa.em3.oraclecloud.com
+  site: CX_1003
+  company: WTW
+- host: hcgn.fa.us2.oraclecloud.com
+  site: CX_1
+  company: Citizens Financial Group
+- host: edbz.fa.us2.oraclecloud.com
+  site: CX
+  company: Texas Instruments
+- host: ibqbjb.fa.ocs.oraclecloud.com
+  site: Honeywell
+  company: Honeywell
+- host: fa-exvu-saasfaprod1.fa.ocs.oraclecloud.com
+  site: CX_1
+  company: GM Financial
+- host: fa-espx-saasfaprod1.fa.ocs.oraclecloud.com
+  site: CX_1
+  company: Cummins
+- host: hctz.fa.us2.oraclecloud.com
+  site: CX_1001
+  company: onsemi
+- host: fa-ewjt-saasfaprod1.fa.ocs.oraclecloud.com
+  site: CX_2
+  company: EXL
+- host: eeho.fa.us2.oraclecloud.com
+  site: CX_45001
+  company: Oracle
+- host: edel.fa.us2.oraclecloud.com
+  site: CX_2001
+  company: Fortinet
+- host: iawmqy.fa.ocs.oraclecloud.com
+  site: careers
+  company: Dell Technologies
+- host: fa-etqo-saasfaprod1.fa.ocs.oraclecloud.com
+  site: CX_1
+  company: Hexaware
+- host: hccz.fa.em3.oraclecloud.com
+  site: CX_2
+  company: Pearson
+- host: ecnf.fa.us2.oraclecloud.com
+  site: CX
+  company: Tradeweb
+- host: fa-euwp-saasfaprod1.fa.ocs.oraclecloud.com
+  site: CX_1
+  company: Mayo Clinic

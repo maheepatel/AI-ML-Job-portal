@@ -1,0 +1,28 @@
+[
+ {
+  "uuid": "f255bf03-9173-4c0a-8a18-7cc43c27ded8",
+  "name": "Data Science Intern - Summer 2027",
+  "department": {
+   "id": "Engineering",
+   "label": "Engineering"
+  },
+  "url": "https://ats.rippling.com/rippling/jobs/f255bf03-9173-4c0a-8a18-7cc43c27ded8",
+  "workLocation": {
+   "label": "San Francisco, CA",
+   "id": "San Francisco, CA"
+  }
+ },
+ {
+  "uuid": "02feb0e7-c3cb-4f8b-b0bb-439bebd2e60f",
+  "name": "Account Executive - Austria & Switzerland (CHAT)",
+  "department": {
+   "id": "Sales",
+   "label": "Sales"
+  },
+  "url": "https://ats.rippling.com/rippling/jobs/02feb0e7-c3cb-4f8b-b0bb-439bebd2e60f",
+  "workLocation": {
+   "label": "Berlin",
+   "id": "Berlin"
+  }
+ }
+]

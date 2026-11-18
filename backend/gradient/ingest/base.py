@@ -1,6 +1,7 @@
 """Shared ingest primitives: the RawJob contract, the Source interface and the HTTP client."""
 
 import asyncio
+import contextlib
 import logging
 import random
 from abc import ABC, abstractmethod
@@ -80,7 +81,16 @@ class Source(ABC):
 
 
 # Hosts that throttle aggressively get fewer parallel requests than the default.
-HOST_LIMITS = {"apply.careers.microsoft.com": 1, "www.linkedin.com": 2, "remotive.com": 1, "jobicy.com": 1}
+HOST_LIMITS = {
+    "apply.careers.microsoft.com": 1, "www.linkedin.com": 2, "remotive.com": 1, "jobicy.com": 1,
+    # ycombinator.com answers 429 after ~25 quick page loads; Habr and MyCareersFuture are single-host APIs.
+    "www.ycombinator.com": 1, "career.habr.com": 2, "api.mycareersfuture.gov.sg": 3,
+    # ~130 SmartRecruiters boards fetch one detail per AI/ML posting from this single API host.
+    "api.smartrecruiters.com": 8,
+}
+
+
+_NOOP = contextlib.nullcontext()
 
 
 class Http:
@@ -101,14 +111,17 @@ class Http:
         for attempt in range(attempts):
             if host not in self._hosts:
                 self._hosts[host] = asyncio.Semaphore(HOST_LIMITS.get(host, self._per_host_limit))
-            async with self._global, self._hosts[host]:
-                try:
-                    self.requests += 1
-                    fn = AsyncFetcher.get if method == "GET" else AsyncFetcher.post
-                    resp = await fn(url, **kwargs)
-                except Exception as exc:  # network errors, timeouts, TLS
-                    last_exc = exc
-                    resp = None
+            # Host slot first: a request queued for a 1-slot host must not sit on a global slot
+            # meanwhile. Hosts throttled to <=2 slots skip the global pool, which their own cap bounds.
+            async with self._hosts[host]:
+                async with (_NOOP if HOST_LIMITS.get(host, 99) <= 2 else self._global):
+                    try:
+                        self.requests += 1
+                        fn = AsyncFetcher.get if method == "GET" else AsyncFetcher.post
+                        resp = await fn(url, **kwargs)
+                    except Exception as exc:  # network errors, timeouts, TLS
+                        last_exc = exc
+                        resp = None
             if resp is not None:
                 if resp.status in (429, 503, 999) or resp.status >= 500:
                     retry_after = resp.headers.get("retry-after") or resp.headers.get("Retry-After")
@@ -128,6 +141,13 @@ class Http:
         if resp.status != 200:
             raise SourceError(f"HTTP {resp.status} for {url}")
         return resp.json()
+
+    async def get_text(self, url: str, **kwargs) -> str:
+        resp = await self.get(url, **kwargs)
+        if resp.status != 200:
+            raise SourceError(f"HTTP {resp.status} for {url}")
+        body = resp.body
+        return body.decode(resp.encoding or "utf-8", "replace") if isinstance(body, bytes) else str(body)
 
     async def post_json(self, url: str, payload: dict, **kwargs):
         headers = {"Content-Type": "application/json", "Accept": "application/json", **kwargs.pop("headers", {})}

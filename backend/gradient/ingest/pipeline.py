@@ -23,6 +23,7 @@ from .discovery import board_from_url, is_ats_url
 from ..search_index import build_and_store
 from .liveness import run_liveness
 from .registry import DISABLE_AFTER_FAILURES, add_boards, build_sources, seed_from_yaml
+from .sources.yc import YCJobBoard, ai_hiring, crawl_yc_websites, yc_directory
 
 log = logging.getLogger("gradient.pipeline")
 
@@ -35,13 +36,14 @@ _SALARY_HINT = re.compile(r"[^.\n]{0,80}(salary|compensation|ctc|pay range|stipe
 
 
 def job_priority(job: Job) -> int:
-    return KIND_PRIORITY.get(job.source_kind, 30) + (10 if job.source == "simplify" else 0)
+    # Simplify links straight to the employer; a YC posting loses to the company's own ATS copy.
+    return KIND_PRIORITY.get(job.source_kind, 30) + (10 if job.source == "simplify" else 0) - (10 if job.source == "yc" else 0)
 
 
 # ---------------------------------------------------------------- fetch
 
 
-SOURCE_TIMEOUT_S = 300
+SOURCE_TIMEOUT_S = 300  # per-source cap (Microsoft, the slowest healthy source, takes ~150-230s)
 
 
 async def _fetch_one(src: Source, http: Http, slots: asyncio.Semaphore) -> tuple[Source, FetchResult | None, str | None, int]:
@@ -116,7 +118,8 @@ def _process_source(session: Session, run: ScrapeRun, src: Source, result: Fetch
     board = session.get(Board, src.board_id) if src.board_id else None
 
     if error is not None or result is None:
-        if board:
+        # Rate limiting says nothing about the board itself, so it never counts toward disabling it.
+        if board and "HTTP 429" not in (error or ""):
             board.consecutive_failures += 1
             if "HTTP 404" in error or board.consecutive_failures >= DISABLE_AFTER_FAILURES:
                 board.enabled = False
@@ -288,6 +291,14 @@ def expire_and_deadlines(session: Session) -> int:
 async def run_pipeline(trigger: str = "manual", only: set[str] | None = None, liveness: bool = True) -> dict:
     init_db()
     t0 = time.perf_counter()
+    http = Http()
+    # YC directory (yc-oss JSON on GitHub Pages): feeds the YC job-board slice and the website crawl.
+    yc_hiring, yc_crawl = [], []
+    if not only or "yc" in only:
+        try:
+            yc_hiring, yc_crawl = await yc_directory(http)
+        except Exception as exc:
+            log.warning("YC directory unavailable this run: %s", exc)
     with session_scope() as s:
         seeded = seed_from_yaml(s)
         # A run killed mid-way (deploy, crash) would otherwise show "running" forever.
@@ -309,11 +320,14 @@ async def run_pipeline(trigger: str = "manual", only: set[str] | None = None, li
                 known[key].add(jid)
         for src in due:
             src.known_ids = known.get(src.key, set())
+            if isinstance(src, YCJobBoard):
+                src.companies, src.run_id = ai_hiring(yc_hiring), run_id
         for src in skipped:
             s.add(SourceRun(run_id=run_id, source_key=src.key, source=src.name, ok=True, skipped=True, finished_at=utcnow()))
 
     log.info("run %s: %d sources due, %d skipped (min interval), %d boards seeded", run_id, len(due), len(skipped), seeded)
-    http = Http()
+    # Runs alongside the sweep: this run's slice of YC company websites -> ATS boards (origin yc).
+    yc_task = asyncio.create_task(crawl_yc_websites(http, yc_crawl, run_id))
     slots = asyncio.Semaphore(settings.sources_in_flight)
     totals = defaultdict(int)
     touched: set[str] = set()
@@ -346,11 +360,17 @@ async def run_pipeline(trigger: str = "manual", only: set[str] | None = None, li
         if done % 200 == 0:
             log.info("run %s: %d/%d sources processed, %d requests", run_id, done, len(due), http.requests)
     log.info("run %s: fetch+persist finished in %.0fs, %d HTTP requests", run_id, time.perf_counter() - t0, http.requests)
+    try:
+        yc_found = await asyncio.wait_for(yc_task, timeout=120)
+    except Exception as exc:
+        log.warning("run %s: YC website crawl incomplete: %s", run_id, exc)
+        yc_found = {}
 
     with session_scope() as s:
         dedupe_and_score(s, touched)
         totals["expired"] = expire_and_deadlines(s)
         totals.update(prune(s))
+        totals["boards_discovered_yc"] = add_boards(s, set(yc_found), "yc", yc_found)
         totals["boards_discovered"] = add_boards(s, set(discovered), "auto", discovered)
 
     if liveness:
