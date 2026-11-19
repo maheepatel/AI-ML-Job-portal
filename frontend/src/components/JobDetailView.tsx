@@ -33,7 +33,7 @@ export function JobDetailView({ job }: { job: JobDetail }) {
       )}
 
       <div className="timeline">
-        <div><b>{timeAgo(job.live_since)}</b><span>Posted by employer</span></div>
+        <div><b>{job.live_since ? timeAgo(job.live_since) : "Not given"}</b><span>Posted by employer</span></div>
         <div><b>{timeAgo(job.first_seen_at)}</b><span>First seen by us</span></div>
         <div><b>{timeAgo(job.last_verified_at)}</b><span>Last verified live</span></div>
       </div>

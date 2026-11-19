@@ -7,7 +7,7 @@ import logging
 import re
 import time
 from collections import defaultdict
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import delete, func, select, update
 from sqlalchemy.orm import Session
@@ -128,6 +128,9 @@ def _process_source(session: Session, run: ScrapeRun, src: Source, result: Fetch
 
     existing = {j.source_job_id: j for j in session.scalars(select(Job).where(Job.source_key == src.key))}
     new = kept = closed = reopened = 0
+    # A job without a source date that shows up on a listing we had already swept was posted
+    # since that sweep, so "now" is an honest posted time. On a first sweep it stays unknown.
+    swept_before = bool(board.last_ok_at) if board else bool(existing)
 
     for raw in result.jobs:
         if not raw.source_job_id or not raw.title:
@@ -166,6 +169,7 @@ def _process_source(session: Session, run: ScrapeRun, src: Source, result: Fetch
                 closed += 1
             continue
 
+        is_new = job is None
         if job is None:
             job = Job(source=src.name, source_key=src.key, source_kind=src.kind, source_job_id=raw.source_job_id,
                       authoritative=src.authoritative, first_seen_at=now, last_seen_at=now, status="open")
@@ -178,6 +182,8 @@ def _process_source(session: Session, run: ScrapeRun, src: Source, result: Fetch
             reopened += 1
 
         _apply(job, raw, src, description, cls, now)
+        if is_new and job.posted_at is None and swept_before:
+            job.posted_at = now
         job.content_hash = chash
         job.last_seen_at = job.last_verified_at = now
         job.missed_runs = 0
@@ -238,7 +244,8 @@ def dedupe_and_score(session: Session, fingerprints: set[str]) -> None:
             open_jobs = [j for j in group if j.status == "open"]
             canonical = max(open_jobs, key=lambda j: (job_priority(j), -aware(j.first_seen_at).timestamp())) if open_jobs else None
             on_ats = any(j.source_kind in ("ats", "bigtech") for j in open_jobs)
-            earliest = min((aware(j.posted_at) or aware(j.first_seen_at) for j in open_jobs), default=None)
+            # Only real posted times count: first_seen_at is when we found it, not when it was posted.
+            earliest = min((aware(j.posted_at) for j in open_jobs if j.posted_at), default=None)
             for job in group:
                 job.duplicate_of = None if canonical is None or job is canonical or job.status != "open" else canonical.id
                 if job is canonical and earliest and (job.posted_at is None or earliest < aware(job.posted_at)):
@@ -253,6 +260,18 @@ def dedupe_and_score(session: Session, fingerprints: set[str]) -> None:
                 )
                 job.trust_score, job.trust_label, job.trust_reasons = t.score, t.label, t.reasons
         session.flush()
+
+
+# Before this cutoff, jobs without a source date were given first_seen_at as their posted time.
+_BORROWED_POSTED_CUTOFF = datetime(2026, 11, 19, 13, 0, tzinfo=timezone.utc)
+
+
+def clear_borrowed_posted_times(session: Session) -> int:
+    """Un-set those borrowed posted times (identical to first_seen_at). Idempotent, cheap."""
+    return session.execute(
+        update(Job).where(Job.posted_at.is_not(None), Job.posted_at == Job.first_seen_at,
+                          Job.first_seen_at < _BORROWED_POSTED_CUTOFF).values(posted_at=None)
+    ).rowcount
 
 
 def prune(session: Session) -> dict:
@@ -304,6 +323,7 @@ async def run_pipeline(trigger: str = "manual", only: set[str] | None = None, li
         # A run killed mid-way (deploy, crash) would otherwise show "running" forever.
         s.execute(update(ScrapeRun).where(ScrapeRun.status == "running", ScrapeRun.started_at < utcnow() - timedelta(hours=2))
                   .values(status="failed", finished_at=utcnow()))
+        clear_borrowed_posted_times(s)
         run = ScrapeRun(started_at=utcnow(), trigger=trigger, status="running")
         s.add(run)
         s.flush()

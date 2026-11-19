@@ -8,7 +8,7 @@ const FAMILIES = ["ML Engineer", "Data Scientist", "AI Engineer / LLM", "Researc
   "MLOps & ML Platform", "AI Product Engineering", "Data & Analytics"];
 const REGIONS: [string, string][] = [["bengaluru", "Bengaluru"], ["india", "India"], ["remote", "Remote"], ["north-america", "US & Canada"], ["europe", "Europe & UK"]];
 const EXP: [string, string][] = [["", "Any"], ["fresher", "Fresher / intern"], ["1-2", "1–2 yrs"], ["2-4", "2–4 yrs"], ["no-intern", "No internships"]];
-const POSTED: [string, string][] = [["", "Any time"], ["4", "Last 4h"], ["24", "24h"], ["72", "3 days"], ["168", "7 days"], ["720", "30 days"]];
+const POSTED: [string, string][] = [["", "Any time"], ["12", "Last 12h"], ["24", "24h"], ["72", "3 days"], ["168", "7 days"], ["720", "30 days"]];
 const TRUST: [string, string][] = [["default", "Hide scams"], ["genuine", "Genuine+"], ["verified", "Verified only"], ["all", "Show all"]];
 const KINDS: [string, string][] = [["ats", "Company ATS"], ["bigtech", "Big tech"], ["linkedin", "LinkedIn"], ["board", "Job boards"], ["community", "HN"]];
 

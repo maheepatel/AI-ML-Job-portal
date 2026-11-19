@@ -1,10 +1,10 @@
-# The scraper for the Render + Neon setup: a full sweep every 4 hours on GitHub's runners,
+# The scraper for the Render + Neon setup: a full sweep twice a day (every 12 hours) on GitHub's runners,
 # writing to Neon. Also publishes the match index the Render web service loads.
 # Setup: repo Settings → Secrets and variables → Actions → New secret GRADIENT_DATABASE_URL.
-# Private repo? Free minutes are limited (2,000/month): change the cron to "30 */8 * * *".
+# GitHub may start a scheduled run late (often an hour or more); the Run workflow button starts one now.
 name: scrape
 on:
-  schedule: [{ cron: "30 */4 * * *" }]   # 00:30, 04:30 … UTC  (06:00, 10:00 … IST)
+  schedule: [{ cron: "30 0,12 * * *" }]   # 00:30 and 12:30 UTC  (06:00 and 18:00 IST)
   workflow_dispatch:                      # "Run workflow" button for a manual sweep
 concurrency: { group: scrape, cancel-in-progress: false }
 jobs:

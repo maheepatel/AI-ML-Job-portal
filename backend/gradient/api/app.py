@@ -81,7 +81,9 @@ def rate_limit(request: Request, key: str, per_minute: int) -> None:
 
 
 def live_since(job: Job):
-    return aware(job.posted_at) or aware(job.first_seen_at)
+    # The employer's publish time (or the sweep that first showed it on an already-known board).
+    # None means the source gives no date; first_seen_at is never passed off as a posted time.
+    return aware(job.posted_at)
 
 
 def iso(dt):
@@ -109,7 +111,7 @@ def _salary(job: Job) -> dict | None:
     return {"min": job.salary_min, "max": job.salary_max, "currency": job.salary_currency, "period": job.salary_period}
 
 
-# Data changes once per sweep (every 4h), so short-lived response caching is safe and keeps
+# Data changes once per sweep (every 12h), so short-lived response caching is safe and keeps
 # page-load endpoints well under a second. Bounded so odd query strings can't grow memory.
 _cache: dict = {}
 _cache_lock = threading.Lock()
@@ -132,7 +134,7 @@ def db() -> Session:
     return SessionLocal()
 
 
-LIVE_SINCE = func.coalesce(Job.posted_at, Job.first_seen_at)
+LIVE_SINCE = Job.posted_at  # NULL = date not given; such jobs sort after dated ones
 
 
 def _filters(q, family, exp, region, posted_within, trust, kind, status):
@@ -202,7 +204,7 @@ def list_jobs(
 
 def _list_jobs(q, family, exp, region, posted_within, trust, kind, status, sort, page, page_size):
     conds = _filters(q, family, exp, region, posted_within, trust, kind, status)
-    order = {"newest": LIVE_SINCE.desc(), "trust": Job.trust_score.desc(), "closed": Job.closed_at.desc()}[sort]
+    order = {"newest": LIVE_SINCE.desc().nulls_last(), "trust": Job.trust_score.desc(), "closed": Job.closed_at.desc()}[sort]
     with db() as s:
         total = s.scalar(select(func.count()).select_from(Job).where(*conds))
         rows = s.scalars(select(Job).options(defer(Job.description), defer(Job.trust_reasons))  # list view never shows them
@@ -250,7 +252,7 @@ def _stats():
         # One pass over open canonical jobs instead of a COUNT query per tile.
         open_n, companies, new_4h, new_24h, india, remote, verified = s.execute(
             select(func.count(), func.count(func.distinct(Job.company)),
-                   n(Job.first_seen_at >= now - timedelta(hours=4)), n(LIVE_SINCE >= now - timedelta(hours=24)),
+                   n(Job.first_seen_at >= now - timedelta(hours=settings.scrape_interval_hours)), n(LIVE_SINCE >= now - timedelta(hours=24)),
                    n(Job.country == "India"), n(Job.work_mode == "remote"), n(Job.trust_label == "verified"))
             .where(*base)
         ).one()
@@ -263,7 +265,7 @@ def _stats():
         ticker = s.execute(select(Job.id, Job.title, Job.company, Job.city, Job.work_mode)
                            .where(*base, Job.trust_label.in_(["verified", "likely_genuine"]),
                                   Job.role_family != "Data & Analytics", Job.seniority != "intern")
-                           .order_by(LIVE_SINCE.desc()).limit(300)).all()
+                           .order_by(LIVE_SINCE.desc().nulls_last(), Job.id.desc()).limit(300)).all()
         seen_companies: set[str] = set()
         ticker = [j for j in ticker if not (j.company in seen_companies or seen_companies.add(j.company))][:24]  # one per company
     last_finished = aware(last.finished_at) if last else None

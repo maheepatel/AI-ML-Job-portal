@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     frontend_dist: Path = BACKEND_DIR.parent / "frontend" / "dist"
 
     # Scheduling
-    scrape_interval_hours: int = 4
+    scrape_interval_hours: int = 12  # two sweeps a day: 06:00 and 18:00 IST
     run_on_start: bool = False
     # Single-container deploys: run the scheduler inside the API process (one machine, one disk).
     embedded_worker: bool = False

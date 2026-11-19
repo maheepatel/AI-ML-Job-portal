@@ -170,7 +170,7 @@ function ScrapePanel({ enabled, onDone }: { enabled: boolean; onDone: () => void
   };
 
   if (!enabled) {
-    return <p className="owner-note">Scrape-now button is off: add GRADIENT_GITHUB_TOKEN on Render. Sweeps still run every 4 hours.</p>;
+    return <p className="owner-note">Scrape-now button is off: add GRADIENT_GITHUB_TOKEN on Render. Sweeps still run twice a day.</p>;
   }
   const startedAt = st?.run ? new Date(st.run.started_at ?? st.run.created_at).getTime() : 0;
   const elapsed = running ? Math.max(0, (now - startedAt) / 1000) : 0;

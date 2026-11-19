@@ -127,3 +127,34 @@ def test_retention_prunes_only_old_closed_data():
     assert job("1").description == "" and job("3").description  # open job untouched
     with session_scope() as s:
         assert s.scalars(select(Job).where(Job.source_job_id == "2")).first() is None
+
+
+def test_undated_job_on_first_sweep_has_no_posted_time():
+    src = FakeAts("acme", "Acme AI")
+    sweep(src, [raw("1")])  # raw() carries no posted_at
+    assert job("1").posted_at is None  # first_seen_at is not passed off as a posted time
+
+
+def test_undated_job_appearing_on_an_already_swept_listing_is_posted_now():
+    src = FakeAts("acme", "Acme AI")
+    sweep(src, [raw("1")])
+    sweep(src, [raw("1"), raw("2", title="Data Scientist")])
+    assert job("1").posted_at is None
+    assert job("2").posted_at is not None
+
+
+def test_borrowed_posted_times_are_cleared():
+    from datetime import timedelta
+
+    from gradient.ingest.pipeline import clear_borrowed_posted_times
+
+    src = FakeAts("acme", "Acme AI")
+    sweep(src, [raw("1"), raw("2", title="Data Scientist")])
+    old = utcnow() - timedelta(days=3)
+    with session_scope() as s:
+        for j in s.scalars(select(Job)):
+            j.first_seen_at = old
+            j.posted_at = old if j.source_job_id == "1" else old - timedelta(days=2)  # 1 borrowed, 2 a real date
+    with session_scope() as s:
+        assert clear_borrowed_posted_times(s) == 1
+    assert job("1").posted_at is None and job("2").posted_at is not None

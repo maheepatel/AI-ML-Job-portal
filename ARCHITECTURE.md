@@ -21,7 +21,7 @@ trust-scores and lifecycle-tracks every posting.
 ## System diagram
 
 ```
-            ┌────────────────────────── worker (every 4h) ──────────────────────────┐
+            ┌────────────────────────── worker (every 12h) ─────────────────────────┐
             │                                                                        │
  sources ──▶│ fetch (Scrapling, per-host throttle) → normalise → classify → dedupe   │
  registry   │        → trust-score → upsert → lifecycle (close/reopen) → liveness    │
@@ -69,10 +69,10 @@ trust-scores and lifecycle-tracks every posting.
 
 ## Scheduling
 
-Full run every **4 hours** (00, 04, 08, 12, 16, 20 IST). ATS boards change slowly and
-early-career roles fill in days, not hours, so a 4h freshness window keeps "posted X hours ago"
+Full run every **12 hours** (06:00 and 18:00 IST). ATS boards change slowly and
+early-career roles fill in days, not hours, so two sweeps a day keep "posted X hours ago"
 honest. It is also polite to every API. Sources with stricter limits declare `min_interval_hours`
-(Remotive asks for at most 4 calls a day, so it gets 6h); the scheduler skips them until due.
+(Remotive asks for at most 4 calls a day, so it gets 12h); the scheduler skips them until due.
 
 ## Data model (`backend/gradient/models.py`)
 

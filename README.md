@@ -3,7 +3,7 @@
 **Every AI/ML job on the internet, for freshers to 4 years of experience.**
 
 Gradient sweeps employer career systems, big-tech careers APIs, LinkedIn's public job pages
-and public job boards every 4 hours. It keeps only AI/ML roles you can actually get, shows
+and public job boards twice a day. It keeps only AI/ML roles you can actually get, shows
 exactly how long each one has been live, flags scams with an explainable trust score, moves
 filled or removed roles to *Closed*, and ranks everything against your résumé.
 
@@ -64,7 +64,7 @@ Step-by-step hosting guide (Fly.io, Railway, Render, VPS, Oracle Free): [DEPLOY.
 
 `docker compose up -d --build` runs the API (serving the built SPA) and the worker from one image,
 sharing a SQLite volume. For managed hosting, point `GRADIENT_DATABASE_URL` at Postgres for both processes.
-Alternatively, skip the worker and enable `.github/workflows/scrape.yml` (cron every 4h).
+Alternatively, skip the worker and enable `.github/workflows/scrape.yml` (cron twice a day, 06:00 and 18:00 IST).
 
 ## Growing coverage
 

@@ -16,7 +16,7 @@ const QUICK = [
 
 const FAQ = [
   ["Where do the jobs come from?", "Straight from employer career systems (Greenhouse, Lever, Ashby, Workday, SmartRecruiters, Workable, Recruitee), big-tech career APIs (Amazon, Microsoft), LinkedIn's public listings, SimplifyJobs' new-grad and internship lists, Hacker News 'Who is hiring' and remote job boards. Every apply link we see teaches us a new company board, so coverage grows every run."],
-  ["How fresh is it?", "A full sweep runs every 4 hours. Each job shows when the employer published it and when we first saw it, so 'live for 3h' means exactly that."],
+  ["How fresh is it?", "A full sweep runs twice a day (06:00 and 18:00 IST). Each job shows when the employer published it and when we first saw it, so 'live for 3h' means exactly that. When a site gives no date we say so instead of guessing."],
   ["How do you know a job is closed?", "Employer ATS feeds list every open role, so a job that disappears from two consecutive sweeps — or whose page returns 404 or 'no longer accepting applications' — moves to Closed with the evidence attached."],
   ["How do you spot scams?", "Every job gets an explainable trust score: posted on the employer's own system, apply link on the company domain, and cross-listings raise it; fees, WhatsApp/Telegram contact, free-mail recruiters, guaranteed income and copy-paste text across companies lower it. Likely scams are hidden by default."],
   ["Who is this for?", "Anyone from fresher to about 4 years of experience looking for ML, data science, AI/LLM, computer vision, NLP, MLOps, research or data roles. Senior, staff, lead and 5+ year roles are filtered out."],
@@ -55,7 +55,7 @@ export default function Home() {
             Every <span className="hl">AI/ML opening</span> on the internet. Built for 0–4 years.
           </h1>
           <p className="lead">
-            Pulled from company career portals, LinkedIn and job boards every 4 hours — de-duplicated, scam-checked,
+            Pulled from company career portals, LinkedIn and job boards twice a day — de-duplicated, scam-checked,
             and dropped the moment a role closes.
           </p>
           <form className="search-pill" onSubmit={search} role="search">
@@ -105,7 +105,7 @@ export default function Home() {
               <div className="empty" style={{ gridColumn: "1 / -1" }}>
                 {stats?.running
                   ? "The first sweep is running — new roles appear here as each source finishes."
-                  : "No roles yet. The next sweep fills this in; sweeps run every 4 hours."}
+                  : "No roles yet. The next sweep fills this in; sweeps run twice a day."}
               </div>
             )}
           </div>

@@ -36,7 +36,7 @@ y2 = 290
 d.rectangle((80, y2 + 52, 80 + d.textlength("on the internet.", font=headline), y2 + 84), fill=MINT)
 d.text((80, y2), "on the internet.", font=headline, fill=INK)
 
-d.text((80, 410), "Freshers to 4 years · refreshed every 4 hours · scam-checked",
+d.text((80, 410), "Freshers to 4 years · refreshed twice a day · scam-checked",
        font=font(regular, 32), fill=(40, 40, 40))
 
 # Pill

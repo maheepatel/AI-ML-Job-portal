@@ -39,7 +39,7 @@ export function Footer() {
           <Logo />
           <p style={{ maxWidth: 420 }}>
             AI/ML openings for freshers to 4 years of experience, aggregated from employer career systems, LinkedIn and
-            public job boards. Refreshed every 4 hours. We link to the original posting; apply on the employer's site.
+            public job boards. Refreshed twice a day. We link to the original posting; apply on the employer's site.
           </p>
         </div>
         <div style={{ display: "flex", gap: 40 }}>

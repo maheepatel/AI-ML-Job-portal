@@ -162,7 +162,7 @@ Ship updates with `git push`.
 4. **Apply.** The first build takes ~5–10 min, then the site is at `https://gradient-<id>.onrender.com`.
 
 **D. First sweep**
-GitHub → repo → **Actions → scrape → Run workflow**. Takes ~15–30 min, then repeats every 4 hours
+GitHub → repo → **Actions → scrape → Run workflow**. Takes ~15–30 min, then repeats twice a day (06:00 and 18:00 IST)
 on its own. Watch the log; the last line prints the run summary. Render picks up the new index on
 the next visit (no redeploy needed).
 
@@ -259,7 +259,7 @@ persistent disk), Render/Railway free tiers (sleep or no disk).
 
 ## After any deploy
 
-- `/api/health` returns `{"ok":true}`; `/status` shows a sweep within 4 hours of boot.
+- `/api/health` returns `{"ok":true}`; `/status` shows a sweep within 12 hours of boot.
 - If the domain isn't `gradient-jobs.fly.dev`, update the `og:url` / `og:image` URLs in
   `frontend/index.html` and redeploy so link previews work.
 - Record the deployed version in `ROLLBACK.md`.
