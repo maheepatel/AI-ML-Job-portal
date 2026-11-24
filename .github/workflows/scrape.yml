@@ -41,6 +41,12 @@ jobs:
       - name: Sweep
         run: |
           python -m gradient.cli scrape 2>&1 | grep -v "INFO: Fetched"
+      # Fresh "we're hiring" posts, newly funded startups and their founders (~1 min). Never fails the run.
+      - name: Hiring posts + funded startups
+        if: success()
+        continue-on-error: true
+        run: |
+          python -m gradient.cli signals 2>&1 | grep -v "INFO: Fetched"
       # Fill today's apply queue and email it. Needs the owner profile + Gmail app password as
       # secrets; without them this step logs a warning and passes, so the sweep never fails on it.
       - name: Apply queue + email

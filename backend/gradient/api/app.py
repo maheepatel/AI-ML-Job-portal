@@ -378,15 +378,17 @@ async def _request_context(request: Request, call_next):
 
 
 from .owner import router as owner_router  # noqa: E402  (after the public routes, before the SPA catch-all)
+from .signals import router as signals_router  # noqa: E402
 
 app.include_router(owner_router)
+app.include_router(signals_router)
 
 # ---------------------------------------------------------------- SPA
 
 if settings.frontend_dist.exists():
     app.mount("/assets", StaticFiles(directory=settings.frontend_dist / "assets"), name="assets")
 
-    SPA_ROUTES = re.compile(r"^(|jobs|jobs/\d+|closed|for-me|status|privacy|terms|apply)/?$")
+    SPA_ROUTES = re.compile(r"^(|jobs|jobs/\d+|closed|for-me|status|privacy|terms|apply|latest|hiring-posts|funded)/?$")
 
     @app.get("/{path:path}", include_in_schema=False)
     def spa(path: str):

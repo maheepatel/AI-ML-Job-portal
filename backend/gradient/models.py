@@ -154,3 +154,86 @@ class Application(Base):
     follow_up_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     tailored: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     notes: Mapped[str | None] = mapped_column(Text, nullable=True)
+
+
+class HiringPost(Base):
+    """A public "we're hiring" social post (Bluesky, Mastodon…). Fresh + low-engagement ones
+    are the outreach targets: few people have seen them yet."""
+
+    __tablename__ = "hiring_posts"
+    __table_args__ = (UniqueConstraint("source", "post_id", name="uq_hiring_post"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    source: Mapped[str] = mapped_column(String(20))  # bluesky | mastodon
+    post_id: Mapped[str] = mapped_column(String(300))
+    url: Mapped[str] = mapped_column(String(600))
+    author: Mapped[str] = mapped_column(String(200))
+    author_handle: Mapped[str] = mapped_column(String(200))
+    author_url: Mapped[str] = mapped_column(String(600))
+    text: Mapped[str] = mapped_column(Text)
+    likes: Mapped[int] = mapped_column(Integer, default=0)
+    reposts: Mapped[int] = mapped_column(Integer, default=0)
+    replies: Mapped[int] = mapped_column(Integer, default=0)
+    links: Mapped[list] = mapped_column(JSON, default=list)
+    skills: Mapped[list] = mapped_column(JSON, default=list)
+    posted_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), index=True)
+    fetched_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+
+class FundingEvent(Base):
+    """A startup that just raised (news headline) or joined a YC batch."""
+
+    __tablename__ = "funding_events"
+    __table_args__ = (UniqueConstraint("company_key", name="uq_funding_company"),)  # one row per startup: its latest raise
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    company: Mapped[str] = mapped_column(String(200))
+    company_key: Mapped[str] = mapped_column(String(200), index=True)  # lowercase alnum
+    round: Mapped[str] = mapped_column(String(40))  # pre-seed | seed | series-a | yc-<batch> | funding
+    amount_text: Mapped[str | None] = mapped_column(String(60), nullable=True)
+    amount_usd: Mapped[float | None] = mapped_column(Float, nullable=True)
+    website: Mapped[str | None] = mapped_column(String(300), nullable=True)
+    one_liner: Mapped[str | None] = mapped_column(String(500), nullable=True)
+    location: Mapped[str | None] = mapped_column(String(200), nullable=True)
+    source: Mapped[str] = mapped_column(String(40))  # google-news | techcrunch | yc | …
+    url: Mapped[str] = mapped_column(String(1000))
+    headline: Mapped[str] = mapped_column(String(500))
+    ai: Mapped[bool] = mapped_column(Boolean, default=False)
+    yc_slug: Mapped[str | None] = mapped_column(String(200), nullable=True)
+    announced_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), index=True)
+    fetched_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+
+class Person(Base):
+    """A public decision-maker at a funded startup (founders from their YC company page)."""
+
+    __tablename__ = "people"
+    __table_args__ = (UniqueConstraint("company_key", "name", name="uq_person"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    company_key: Mapped[str] = mapped_column(String(200), index=True)
+    name: Mapped[str] = mapped_column(String(200))
+    title: Mapped[str | None] = mapped_column(String(200), nullable=True)
+    linkedin_url: Mapped[str | None] = mapped_column(String(400), nullable=True)
+    x_url: Mapped[str | None] = mapped_column(String(400), nullable=True)
+    source: Mapped[str] = mapped_column(String(40))  # yc
+    source_url: Mapped[str] = mapped_column(String(600))
+    fetched_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+
+class Outreach(Base):
+    """The owner's cold-email log (20/day target)."""
+
+    __tablename__ = "outreach"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    company: Mapped[str] = mapped_column(String(200))
+    person: Mapped[str] = mapped_column(String(200))
+    email: Mapped[str | None] = mapped_column(String(300), nullable=True)
+    kind: Mapped[str] = mapped_column(String(20))  # funding | post | job
+    ref_id: Mapped[int | None] = mapped_column(Integer, nullable=True)  # funding_events.id / hiring_posts.id / jobs.id
+    status: Mapped[str] = mapped_column(String(12), default="sent")  # sent | replied | call | no-reply | bounced
+    sent_on: Mapped[str] = mapped_column(String(10), index=True)  # IST date
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    notes: Mapped[str | None] = mapped_column(Text, nullable=True)

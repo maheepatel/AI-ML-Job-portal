@@ -21,6 +21,14 @@ export function liveFor(iso: string | null | undefined): string {
   return `Live for ${Math.floor(hours / 24)}d`;
 }
 
+/** "Posted 3h ago" when the source dates the role, else "Found 3h ago" (when Gradient first saw it). */
+export function postedLabel(posted: string | null | undefined, firstSeen: string | null | undefined): string {
+  const iso = posted ?? firstSeen;
+  if (!iso) return "Date not given";
+  const ago = timeAgo(iso);
+  return `${posted ? "Posted" : "Found"} ${ago === "just now" ? "just now" : ago}`;
+}
+
 export function isFresh(iso: string | null | undefined): boolean {
   return !!iso && Date.now() - new Date(iso).getTime() < 72 * 3_600_000;
 }

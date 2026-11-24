@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import type { JobSummary, TrustLabel } from "../api";
-import { experience, isFresh, liveFor, place, salary, SOURCE_TEXT, TRUST_TEXT } from "../format";
+import { experience, isFresh, place, postedLabel, salary, SOURCE_TEXT, TRUST_TEXT } from "../format";
 
 export function Logo() {
   return (
@@ -22,6 +22,9 @@ export function Nav() {
         <Logo />
         <nav className="nav-links">
           <NavLink to="/jobs" className="keep">Jobs</NavLink>
+          <NavLink to="/latest" className="keep">Latest</NavLink>
+          <NavLink to="/hiring-posts">Hiring posts</NavLink>
+          <NavLink to="/funded">Funded</NavLink>
           <NavLink to="/closed">Closed</NavLink>
           <NavLink to="/status">Status</NavLink>
           <NavLink to="/for-me" className="cta">For me</NavLink>
@@ -83,7 +86,12 @@ export function ScoreRing({ value, small }: { value: number; small?: boolean }) 
 
 export function LiveTag({ job }: { job: JobSummary }) {
   if (job.status === "closed") return <span className="badge closed">Closed</span>;
-  return <span className={`live${isFresh(job.live_since) ? "" : " old"}`}>{liveFor(job.live_since)}</span>;
+  const when = job.posted_at ?? job.first_seen_at;
+  return (
+    <span className={`live${isFresh(when) ? "" : " old"}`} title={job.posted_at ? `Posted ${new Date(job.posted_at).toLocaleString()}` : "The source gives no posted date; this is when Gradient first found it"}>
+      {postedLabel(job.posted_at, job.first_seen_at)}
+    </span>
+  );
 }
 
 export function JobCard({ job, selected, onSelect, matched }: {

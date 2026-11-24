@@ -210,3 +210,75 @@ export const ownerApi = {
     setTimeout(() => URL.revokeObjectURL(url), 2000);
   },
 };
+
+// ---------------------------------------------------------------- outreach signals
+
+export interface HiringPost {
+  id: number;
+  source: "bluesky" | "mastodon";
+  url: string;
+  author: string;
+  author_handle: string;
+  author_url: string;
+  text: string;
+  likes: number;
+  reposts: number;
+  replies: number;
+  links: string[];
+  skills: string[];
+  posted_at: string;
+  bot: boolean;
+}
+
+export interface FundedStartup {
+  id: number;
+  company: string;
+  company_key: string;
+  round: string;
+  amount: string | null;
+  amount_usd: number | null;
+  website: string | null;
+  one_liner: string | null;
+  location: string | null;
+  source: string;
+  url: string;
+  headline: string;
+  ai: boolean;
+  yc_slug: string | null;
+  announced_at: string;
+  people: { name: string; title: string | null; linkedin_url: string | null; x_url: string | null; source_url: string }[];
+  open_jobs: number;
+}
+
+export interface Contacts {
+  company: string;
+  domain: string | null;
+  people: { name: string; title: string | null; linkedin_url: string | null; x_url: string | null; emails: string[]; contacted: boolean }[];
+  generic: string[];
+}
+
+export interface OutreachItem {
+  id: number;
+  company: string;
+  person: string;
+  email: string | null;
+  kind: "funding" | "post" | "job";
+  ref_id: number | null;
+  status: "sent" | "replied" | "call" | "no-reply" | "bounced";
+  sent_on: string;
+  notes: string | null;
+  created_at: string;
+}
+
+export const signalsApi = {
+  posts: (params: URLSearchParams) => get<{ items: HiringPost[]; hidden: Record<string, number>; total: number }>(`/api/signals/posts?${params}`),
+  funded: (params: URLSearchParams) => get<{ items: FundedStartup[]; total: number }>(`/api/signals/funded?${params}`),
+};
+
+export const outreachApi = {
+  contacts: (eventId: number) => owner<Contacts>(`/funded/${eventId}/contacts`),
+  list: () => owner<{ items: OutreachItem[]; counts: Record<string, number>; today: number; target: number; reply_rate: number | null }>("/outreach"),
+  log: (body: { company: string; person: string; email?: string | null; kind: "funding" | "post" | "job"; ref_id?: number | null; notes?: string }) =>
+    owner<OutreachItem>("/outreach", { method: "POST", body: JSON.stringify(body) }),
+  update: (id: number, body: { status?: string; notes?: string }) => owner<OutreachItem>(`/outreach/${id}`, { method: "PATCH", body: JSON.stringify(body) }),
+};

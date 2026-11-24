@@ -18,7 +18,7 @@ from sqlalchemy import func, select
 from ..config import settings
 from ..db import aware, session_scope, utcnow
 from ..domain.matching import match_jobs
-from ..models import Application, Job, ScrapeRun
+from ..models import Application, Job, Outreach, ScrapeRun
 from ..owner import github
 from ..owner.notify import owner_profile
 from ..owner.queue import build_queue, lane_for, today_ist
@@ -256,3 +256,106 @@ def cv_pdf(app_id: int, which: str = "tailored"):
     name = "".join(c for c in cv.get("name", "CV") if c.isalnum()) or "CV"
     return Response(render(cv), media_type="application/pdf",
                     headers={"Content-Disposition": f'attachment; filename="{name}_CV_{safe}.pdf"', "Cache-Control": "no-store"})
+
+
+# ---------------------------------------------------------------- cold outreach
+
+OUTREACH_DAILY_TARGET = 20
+OUTREACH_STATUSES = ("sent", "replied", "call", "no-reply", "bounced")
+
+
+def _domain(website: str | None) -> str | None:
+    if not website:
+        return None
+    host = website.split("//", 1)[-1].split("/", 1)[0].lower()
+    return host[4:] if host.startswith("www.") else host or None
+
+
+def email_guesses(name: str, domain: str | None) -> list[str]:
+    """Common work-email formats at small startups. Unverified guesses: the page labels them so."""
+    if not domain:
+        return []
+    parts = [p for p in "".join(c if c.isalpha() or c == " " else " " for c in name.lower()).split() if p]
+    if not parts:
+        return []
+    first, last = parts[0], parts[-1] if len(parts) > 1 else ""
+    out = [f"{first}@{domain}"]
+    if last:
+        out += [f"{first}.{last}@{domain}", f"{first}{last[0]}@{domain}", f"{first[0]}{last}@{domain}"]
+    return out
+
+
+@router.get("/funded/{event_id}/contacts")
+def funded_contacts(event_id: int):
+    from ..models import FundingEvent, Person
+
+    with session_scope() as s:
+        e = s.get(FundingEvent, event_id)
+        if e is None:
+            raise HTTPException(404, "Not found")
+        domain = _domain(e.website)
+        people = [{"name": p.name, "title": p.title, "linkedin_url": p.linkedin_url, "x_url": p.x_url,
+                   "emails": email_guesses(p.name, domain)} for p in s.scalars(select(Person).where(Person.company_key == e.company_key))]
+        sent = {o.person for o in s.scalars(select(Outreach).where(Outreach.kind == "funding", Outreach.ref_id == event_id))}
+    for p in people:
+        p["contacted"] = p["name"] in sent
+    return {"company": e.company, "domain": domain, "people": people,
+            "generic": [f"founders@{domain}", f"hello@{domain}", f"careers@{domain}"] if domain else []}
+
+
+class OutreachIn(BaseModel):
+    company: str = Field(max_length=200)
+    person: str = Field(max_length=200)
+    email: str | None = Field(default=None, max_length=300)
+    kind: str = Field(pattern="^(funding|post|job)$")
+    ref_id: int | None = None
+    notes: str | None = Field(default=None, max_length=4000)
+
+
+class OutreachPatch(BaseModel):
+    status: str | None = Field(default=None, pattern="^(" + "|".join(OUTREACH_STATUSES) + ")$")
+    notes: str | None = Field(default=None, max_length=4000)
+
+
+def _outreach_out(o: Outreach) -> dict:
+    return {"id": o.id, "company": o.company, "person": o.person, "email": o.email, "kind": o.kind, "ref_id": o.ref_id,
+            "status": o.status, "sent_on": o.sent_on, "notes": o.notes, "created_at": _iso(o.created_at)}
+
+
+@router.get("/outreach")
+def outreach_list():
+    day = today_ist()
+    with session_scope() as s:
+        rows = s.scalars(select(Outreach).order_by(Outreach.id.desc()).limit(500)).all()
+        items = [_outreach_out(o) for o in rows]
+        counts = dict(s.execute(select(Outreach.status, func.count()).group_by(Outreach.status)).all())
+        today_n = s.scalar(select(func.count()).select_from(Outreach).where(Outreach.sent_on == day)) or 0
+    total = sum(counts.values())
+    replies = counts.get("replied", 0) + counts.get("call", 0)
+    return {"items": items, "counts": counts, "today": today_n, "target": OUTREACH_DAILY_TARGET,
+            "reply_rate": round(100 * replies / total, 1) if total else None}
+
+
+@router.post("/outreach")
+def outreach_log(body: OutreachIn):
+    now = utcnow()
+    with session_scope() as s:
+        o = Outreach(company=body.company, person=body.person, email=body.email, kind=body.kind, ref_id=body.ref_id,
+                     notes=body.notes, status="sent", sent_on=today_ist(now), created_at=now, updated_at=now)
+        s.add(o)
+        s.flush()
+        return _outreach_out(o)
+
+
+@router.patch("/outreach/{oid}")
+def outreach_update(oid: int, patch: OutreachPatch):
+    with session_scope() as s:
+        o = s.get(Outreach, oid)
+        if o is None:
+            raise HTTPException(404, "Not found")
+        if patch.status:
+            o.status = patch.status
+        if patch.notes is not None:
+            o.notes = patch.notes
+        o.updated_at = utcnow()
+        return _outreach_out(o)

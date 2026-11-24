@@ -9,6 +9,7 @@
   rescore                                                 re-apply trust rules + dedupe to every stored job
   backup | restore <snapshot.db>                          SQLite snapshots in data/backups
   queue                                                   top up today's apply queue (owner profile)
+  signals                                                 hiring posts + funded startups + founders
   notify [--event schedule]                               queue + after-sweep email (run by the workflow)
 """
 
@@ -40,6 +41,7 @@ def main() -> None:
     sub.add_parser("rescore")
     sub.add_parser("backup")
     sub.add_parser("queue")
+    sub.add_parser("signals")
     nt = sub.add_parser("notify")
     nt.add_argument("--event", default="schedule")
     rs = sub.add_parser("restore")
@@ -88,6 +90,10 @@ def main() -> None:
             fps = set(s.scalars(select(Job.fingerprint).distinct()))
             dedupe_and_score(s, fps)
         print(f"rescored {len(fps)} fingerprints")
+    elif args.cmd == "signals":
+        from .signals.run import run_signals
+
+        print(json.dumps(run_signals(), indent=2, default=str))
     elif args.cmd in ("queue", "notify"):
         from .db import init_db, session_scope
         from .owner.notify import after_sweep, owner_profile

@@ -146,11 +146,11 @@ def test_undated_job_appearing_on_an_already_swept_listing_is_posted_now():
 def test_borrowed_posted_times_are_cleared():
     from datetime import timedelta
 
-    from gradient.ingest.pipeline import clear_borrowed_posted_times
+    from gradient.ingest.pipeline import _BORROWED_POSTED_CUTOFF, clear_borrowed_posted_times
 
     src = FakeAts("acme", "Acme AI")
     sweep(src, [raw("1"), raw("2", title="Data Scientist")])
-    old = utcnow() - timedelta(days=3)
+    old = _BORROWED_POSTED_CUTOFF - timedelta(days=3)  # anchored to the cutoff: "3 days ago" stopped working on Nov 22
     with session_scope() as s:
         for j in s.scalars(select(Job)):
             j.first_seen_at = old

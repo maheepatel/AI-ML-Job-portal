@@ -3,6 +3,9 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, Route, Routes, useLocation } from "react-router-dom";
 import { Footer, Nav } from "./components/ui";
 import Apply from "./pages/Apply";
+import Funded from "./pages/Funded";
+import HiringPosts from "./pages/HiringPosts";
+import Latest from "./pages/Latest";
 import ForMe from "./pages/ForMe";
 import Home from "./pages/Home";
 import JobPage from "./pages/JobPage";
@@ -69,6 +72,9 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/apply" element={<Apply />} />
+          <Route path="/latest" element={<Latest />} />
+          <Route path="/hiring-posts" element={<HiringPosts />} />
+          <Route path="/funded" element={<Funded />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </ErrorBoundary>

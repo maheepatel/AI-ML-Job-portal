@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { ownerApi, ownerToken, type OwnerApp, type QueueResponse, type ScrapeStatus, type Tailored } from "../api";
+import { outreachApi, ownerApi, ownerToken, type OutreachItem, type OwnerApp, type QueueResponse, type ScrapeStatus, type Tailored } from "../api";
 import { timeAgo } from "../format";
 import { ScoreRing, TrustBadge } from "../components/ui";
 
-type Tab = "direct" | "tailor" | "backlog" | "tracker";
+type Tab = "direct" | "tailor" | "backlog" | "tracker" | "outreach";
 
 export default function Apply() {
   const [authed, setAuthed] = useState<boolean | null>(null);
@@ -58,6 +58,7 @@ function Owner({ features, onLogout }: { features: Record<string, boolean>; onLo
 
   const load = useCallback(() => {
     setErr(null);
+    if (tab === "outreach") return;
     const view = tab === "tracker" ? "tracker" : tab === "backlog" ? "backlog" : "today";
     ownerApi.queue(view).then(setData).catch((e) => setErr(e.message));
   }, [tab]);
@@ -104,21 +105,22 @@ function Owner({ features, onLogout }: { features: Record<string, boolean>; onLo
       <div className="chips" role="tablist" style={{ marginBottom: 16 }}>
         {([["direct", `Ready to apply${tab !== "tracker" && tab !== "backlog" && lanes.direct != null ? ` (${lanes.direct})` : ""}`],
            ["tailor", `Tailor CV first${tab !== "tracker" && tab !== "backlog" && lanes.tailor != null ? ` (${lanes.tailor})` : ""}`],
-           ["backlog", "Earlier days"], ["tracker", "Tracker"]] as [Tab, string][]).map(([t, label]) => (
+           ["backlog", "Earlier days"], ["tracker", "Tracker"], ["outreach", "Cold emails"]] as [Tab, string][]).map(([t, label]) => (
           <button key={t} type="button" role="tab" aria-selected={tab === t} className={`chip${tab === t ? " on" : ""}`} onClick={() => setTab(t)}>{label}</button>
         ))}
       </div>
 
       {err && <p className="owner-err" role="alert">{err}</p>}
-      {!data && !err && <p className="muted">Loading…</p>}
-      {data && items.length === 0 && (
+      {tab === "outreach" && <OutreachLog />}
+      {tab !== "outreach" && !data && !err && <p className="muted">Loading…</p>}
+      {tab !== "outreach" && data && items.length === 0 && (
         <div className="empty">
           {tab === "tracker" ? "Nothing applied yet. Mark roles as applied from the queue and they show up here."
             : "Nothing here. Click “Top up today's queue”, or wait for the next sweep."}
         </div>
       )}
       <div className="owner-list">
-        {items.map((a) => tab === "tracker"
+        {tab !== "outreach" && items.map((a) => tab === "tracker"
           ? <TrackerRow key={a.id} a={a} onPatch={(b) => patch(a, b)} />
           : <QueueCard key={a.id} a={a} canTailor={!!features.tailoring} onPatch={(b) => patch(a, b)} />)}
       </div>
@@ -346,5 +348,54 @@ function TrackerRow({ a, onPatch }: { a: OwnerApp; onPatch: (b: { status?: strin
         {a.status === "applied" && <button type="button" className="btn btn-ghost" onClick={() => onPatch({ follow_up_days: 7 })}>Followed up</button>}
       </div>
     </article>
+  );
+}
+
+// ---------------------------------------------------------------- cold-email log
+
+const OUTREACH_STATUSES = ["sent", "replied", "call", "no-reply", "bounced"];
+
+function OutreachLog() {
+  const [d, setD] = useState<{ items: OutreachItem[]; today: number; target: number; reply_rate: number | null } | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+  useEffect(() => { outreachApi.list().then(setD).catch((e) => setErr(e.message)); }, []);
+  const patch = async (o: OutreachItem, body: { status?: string; notes?: string }) => {
+    try {
+      const next = await outreachApi.update(o.id, body);
+      setD((x) => x && { ...x, items: x.items.map((i) => (i.id === o.id ? next : i)) });
+    } catch (e) { setErr((e as Error).message); }
+  };
+  if (err) return <p className="owner-err">{err}</p>;
+  if (!d) return <p className="muted">Loading…</p>;
+  const pct = Math.min(100, (d.today / d.target) * 100);
+  return (
+    <div className="owner-list">
+      <section className="owner-scrape">
+        <div>
+          <b>{d.today} of {d.target} cold emails today</b>
+          <div className="caption">
+            Short, direct, in your own words. Log each one from <Link to="/funded">Funded</Link> or <Link to="/hiring-posts">Hiring posts</Link>.
+            {d.reply_rate != null && ` Reply rate so far: ${d.reply_rate}%.`}
+          </div>
+          <div className="owner-bar"><span style={{ width: `${pct}%` }} /></div>
+        </div>
+      </section>
+      {d.items.length === 0 && <div className="empty">No emails logged yet.</div>}
+      {d.items.map((o) => (
+        <article key={o.id} className="owner-card owner-row">
+          <div style={{ minWidth: 0 }}>
+            <b>{o.person}</b> <span className="caption">at {o.company}</span>
+            <div className="caption">{o.email ?? "no email saved"} · {o.kind} · {timeAgo(o.created_at)}</div>
+            <input className="owner-notes" defaultValue={o.notes ?? ""} placeholder="What you sent, their reply…" aria-label="Notes"
+              onBlur={(e) => e.target.value !== (o.notes ?? "") && patch(o, { notes: e.target.value })} />
+          </div>
+          <div className="owner-row-side">
+            <select value={o.status} onChange={(e) => patch(o, { status: e.target.value })} aria-label="Status">
+              {OUTREACH_STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </div>
+        </article>
+      ))}
+    </div>
   );
 }
